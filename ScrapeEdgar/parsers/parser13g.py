@@ -38,6 +38,12 @@ class Parser13g:
         if match:
             issue_name = match.group(1).strip()
 
+        else:
+            pat = re.compile(r'Item 2\(d\)\.\s+Title\s+of\s+Class\s+of\s+Securities:\s+([\w\W]+)\s+Item\s+2\(e\)')
+            match = pat.search(text)
+            if match:
+                issue_name = match.group(1).strip()
+
         return {'cusip': cusip_number, 'address': address, 'issue_name' : issue_name}
 
     def parse_html(self, doc):

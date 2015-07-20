@@ -80,7 +80,6 @@ class EdgarSpider(BaseSpider):
 
         logging.info("PARSING %s with content type %s" % (name, content_type) )
         results = parser.parse(response.text, content_type)
-        print "------- Address for %s, %s, %s " % (item['url'], name, results['address'][:100])
 
         if results:
             item.update(results)
