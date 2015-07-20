@@ -17,17 +17,28 @@ class Parser13ga:
             return None
 
     def parse_text(self, doc):
-        cusip_pat = re.compile("(\w{6}\W*\w{3})\W+\(CUSIP Number\)", re.IGNORECASE | re.MULTILINE)
+        patterns_to_match_groups = {
+            r'(\w{6}\W*\w{3})\W+\(CUSIP Number\)': 1,
+            r'cusip (no|number|num)\.*:*\W*(\w{6}\W*\w{3})' : 2
+        }
+
+        cusip = None
+        for pat in patterns_to_match_groups:
+            match = re.compile(pat, re.IGNORECASE | re.MULTILINE).search(doc)
+            if match:
+                cusip = match.group(patterns_to_match_groups.get(pat))
+                break
+#        cusip_pat = re.compile("(\w{6}\W*\w{3})\W+\(CUSIP Number\)", re.IGNORECASE | re.MULTILINE)
 
         #Alternative pattern
         # pat = re.compile("cusip (no|number|num)\.*:*\W*(\w{6}\W*\w{3})", re.IGNORECASE | re.MULTILINE)
         # TBD: Implement fallback to this pattern if the first one doesn't match (use match.group 2)
 
-        cusip = None
+ #       cusip = None
 
-        match = cusip_pat.search(doc)
-        if match:
-            cusip = match.group(1)
+        #match = cusip_pat.search(doc)
+        #if match:
+        #    cusip = match.group(1)
 
         address = parse_address(doc)
 
