@@ -18,6 +18,11 @@ class Parser13ga:
 
     def parse_text(self, doc):
         cusip_pat = re.compile("(\w{6}\W*\w{3})\W+\(CUSIP Number\)", re.IGNORECASE | re.MULTILINE)
+
+        #Alternative pattern
+        # pat = re.compile("cusip (no|number|num)\.*:*\W*(\w{6}\W*\w{3})", re.IGNORECASE | re.MULTILINE)
+        # TBD: Implement fallback to this pattern if the first one doesn't match
+
         cusip = None
 
         match = cusip_pat.search(doc)
@@ -35,10 +40,12 @@ class Parser13ga:
         text = html_parser.get_text()
         address = parse_address(text)
 
+        print text
+
         cusip_number = None
 
         # CUSIP
-        pat = re.compile("cusip (no|number|num)\.*:*\W*(\w{6}\W*\w{3})", re.IGNORECASE)
+        pat = re.compile("cusip (no|number|num)\.*:*\W*(\w{6}\W*\w{3})", re.IGNORECASE | re.MULTILINE)
 
         # We could use beautiful soup to find the pattern by applying it to all the table cells:
         # cells = soup.findAll("td")
@@ -48,6 +55,12 @@ class Parser13ga:
         match = pat.search(text)
 
         if match:
+            print "---- MATCH!!!"
             cusip_number = match.group(2)
+        else:
+            print "---- NO MATCH!!!"
 
-        return {'cusip' : cusip_number, 'address' : address}
+
+        results = {'cusip' : cusip_number, 'address' : address}
+        print results
+        return results
