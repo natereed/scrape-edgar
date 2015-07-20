@@ -28,21 +28,16 @@ class Parser13ga:
             if match:
                 cusip = match.group(patterns_to_match_groups.get(pat))
                 break
-#        cusip_pat = re.compile("(\w{6}\W*\w{3})\W+\(CUSIP Number\)", re.IGNORECASE | re.MULTILINE)
-
-        #Alternative pattern
-        # pat = re.compile("cusip (no|number|num)\.*:*\W*(\w{6}\W*\w{3})", re.IGNORECASE | re.MULTILINE)
-        # TBD: Implement fallback to this pattern if the first one doesn't match (use match.group 2)
-
- #       cusip = None
-
-        #match = cusip_pat.search(doc)
-        #if match:
-        #    cusip = match.group(1)
 
         address = parse_address(doc)
 
-        return {'cusip' : cusip, 'address' : address}
+        issue_name = None
+        pat = re.compile(r"\(Name\s+of\s+Issuer\)([a-z0-9\.%'\s\,\$]+)-*\s+\(Title\s+of\s+Class\s+of\s+Securities\)", re.IGNORECASE | re.MULTILINE)
+        match = pat.search(doc)
+        if match:
+            issue_name = match.group(1).strip()
+
+        return {'cusip' : cusip, 'address' : address, 'issue_name' : issue_name}
 
     def parse_html(self, doc):
         # Convert to text

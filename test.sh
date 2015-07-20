@@ -1,3 +1,3 @@
-python -m unittest ScrapeEdgar.parsers.parser_tests ScrapeEdgar.parsers.parser13ga_tests
+python -m unittest ScrapeEdgar.parsers.parser13g_tests ScrapeEdgar.parsers.parser13ga_tests
 
 

@@ -32,7 +32,13 @@ class Parser13g:
 
         address = parse_address(text)
 
-        return {'cusip': cusip_number, 'address': address}
+        issue_name = None
+        pat = re.compile(r"\(Name\s+of\s+Issuer\)([a-z0-9\.%'\s\,\$]+)-*\s+\(Title\s+of\s+Class\s+of\s+Securities\)", re.IGNORECASE | re.MULTILINE)
+        match = pat.search(text)
+        if match:
+            issue_name = match.group(1).strip()
+
+        return {'cusip': cusip_number, 'address': address, 'issue_name' : issue_name}
 
     def parse_html(self, doc):
          # Convert to text

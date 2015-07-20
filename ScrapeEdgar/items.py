@@ -15,4 +15,4 @@ class FilingItem(scrapy.Item):
     cusip = scrapy.Field()
     address = scrapy.Field()
     description = scrapy.Field()
-    issuer_name = scrapy.Field()
+    issue_name = scrapy.Field()
