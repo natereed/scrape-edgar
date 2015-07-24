@@ -4,23 +4,17 @@ import re
 from lxml.cssselect import CSSSelector
 
 from ScrapeEdgar.parsers.html2textparser import HTML2TextParser
+from ScrapeEdgar.parsers.base_parser import BaseParser
 
-class Parser8kEx42:
-    def parse(self, doc, content_type='text/html'):
-        if content_type == 'text/html':
-            return self.parse_html(doc)
-        elif content_type == 'text/plain':
-            return self.parse_text(doc)
-        else:
-            print "--- Warning! Unrecognized content type %s" % content_type
-            return None
-
-    def parse_text(self, doc):
+class Parser8kEx42(BaseParser):
+   
+    def parse_text(self, doc, **kwargs):
         print "WARNING: TEXT PARSER for EX4.2 not implemented!!!"
         return
 
-    def parse_html(self, doc):
+    def parse_html(self, doc, **kwargs):
         # build the DOM Tree
+        # TBD: Rewrite this to use text parsing
         tree = lxml.html.fromstring(doc)
 
         # construct a CSS Selector

@@ -8,11 +8,10 @@
 import scrapy
 
 class FilingItem(scrapy.Item):
-    name = scrapy.Field()
+    issuer_name = scrapy.Field()
+    issue_name = scrapy.Field()
+    document_name = scrapy.Field()
     date = scrapy.Field()
-    companies = scrapy.Field()
     url = scrapy.Field()
     cusip = scrapy.Field()
     address = scrapy.Field()
-    description = scrapy.Field()
-    issue_name = scrapy.Field()

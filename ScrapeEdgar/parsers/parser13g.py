@@ -6,7 +6,7 @@ from ScrapeEdgar.parsers.address_text_parser import parse_address
 
 class Parser13g(BaseParser):
 
-    def parse_text(self, text):
+    def parse_text(self, text, **kwargs):
         cusip_number = None
         address = None
 

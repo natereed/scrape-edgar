@@ -8,14 +8,6 @@ class Parser13gTests(unittest.TestCase):
     def setUp(self):
         self.parser = Parser13g()
 
-    def test_parser8kex42(self):
-        contents = load_file_contents("example_filings/EX-4.2-DNB.html")
-        parser = Parser8kEx42()
-        results = parser.parse(contents)
-        self.assertEqual(['26483E AH3'], results.get('cusip'))
-        self.assertEqual("4.000% Senior Notes due 2020", results.get("description"))
-        self.assertEqual(u'THE DUN\xa0& BRADSTREET CORPORATION', results.get("issuer_name"))
-
     def test_parse13g_html(self):
         contents = load_file_contents("example_filings/SC_13G_Twitter.html")
         results = self.parser.parse(contents, content_type="text/html")

@@ -1,22 +1,9 @@
-from HTMLParser import HTMLParser
-
-import logging
+from ScrapeEdgar.parsers.base_parser import BaseParser
 import re
 from ScrapeEdgar.parsers.address_text_parser import parse_address
-from ScrapeEdgar.parsers.html2textparser import HTML2TextParser
 
-class Parser13ga:
-
-    def parse(self, doc, content_type='text/html'):
-        if content_type == 'text/html':
-            return self.parse_html(doc)
-        elif content_type == 'text/plain':
-            return self.parse_text(doc)
-        else:
-            logging.warning("Unrecognized content type %s" % content_type)
-            return None
-
-    def parse_text(self, doc):
+class Parser13ga(BaseParser):
+    def parse_text(self, doc, **kwargs):
         patterns_to_match_groups = {
             r'(\w{6}\W*\w{3})\W+\(CUSIP Number\)': 1,
             r'cusip (no|number|num)\.*:*\W*(\w{6}\W*\w{3})' : 2
@@ -39,10 +26,3 @@ class Parser13ga:
 
         return {'cusip' : cusip, 'address' : address, 'issue_name' : issue_name}
 
-    def parse_html(self, doc):
-        # Convert to text
-        html_parser = HTML2TextParser()
-        html_parser.feed(doc)
-        text = html_parser.get_text()
-
-        return self.parse_text(text)

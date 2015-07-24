@@ -15,13 +15,12 @@ class Parser8kEx101Tests(unittest.TestCase):
         self.results = self.parser.parse(contents, "text/html")
 
     def test_extract_cusip(self):
-        pass
+        self.assertEqual("38259P AD4", self.results.get("cusip"))
 
     def test_extract_issue_name(self):
         self.assertEqual("3.375% Notes due 2024 (the  Notes )", self.results.get("issue_name"))
-        pass
 
-    def test_extract_company_name(self):
+    def test_extract_issuer_name(self):
         pass
 
     def test_extract_company_address(self):

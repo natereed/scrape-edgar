@@ -10,7 +10,7 @@ class Parser8kEx402Tests(unittest.TestCase):
     def setUp(self):
         self.parser = Parser8kEx402()
         contents = load_file_contents("example_filings/google_8k_ex4.02.html")
-        self.results = self.parser.parse(contents, "text/html", "GOOGLE INC")
+        self.results = self.parser.parse(contents, "text/html", issuer_name="GOOGLE INC")
 
     def test_extract_cusip(self):
         self.assertEqual("38259P AD4", self.results.get("cusip"))
