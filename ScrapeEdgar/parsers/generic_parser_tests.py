@@ -19,7 +19,7 @@ class GenericParserTests(unittest.TestCase):
     def test_extract_multiple_cusips(self):
         contents = load_file_contents("example_filings/EX-99-multiple_convertible_notes.html")
         results = self.parser.parse(contents)
-        self.assertEqual(['229678AD9', '229678AF4', '229678AH0'], results.get("cusip"))
+        self.assertEqual(['229678AD9', '229678AH0', '229678AF4'], results.get("cusip"))
 
     def test_extract_multiple_issues(self):
         contents = load_file_contents("example_filings/EX-99-multiple_convertible_notes.html")
@@ -34,3 +34,8 @@ class GenericParserTests(unittest.TestCase):
         self.assertEqual(['26483E AH3'], results.get("cusip"))
         self.assertEqual(['4.000% SENIOR NOTES DUE 2020'], results.get("issue_name"))
 
+    def test_broken_issuer_name_sc13d(self):
+        contents = load_file_contents("example_filings/sc13d_broken_issuer_name.html")
+        results = self.parser.parse(contents)
+        self.assertEqual(['63888U108'], results.get('cusip'))
+        self.assertEqual('Common Stock, $0.001 Par Value per share', results.get('issue_name'))

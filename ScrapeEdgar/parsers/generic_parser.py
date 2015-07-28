@@ -9,11 +9,11 @@ from sets import Set
 
 class GenericParser(BaseParser):
 
-    def extract_cusip(self, text):
+    def extract_cusips(self, text):
         pat = re.compile(r'CUSIP\s+(no|number|num|#)*\.*:*\s*(\w{6}\W*\w{3})\b', re.IGNORECASE | re.MULTILINE)
         matches = re.findall(pat, text)
         if matches:
-            return [match[1] for match in matches]
+            return self.normalize_results([match[1] for match in matches])
 
         return None
 
@@ -24,12 +24,12 @@ class GenericParser(BaseParser):
         normalized_results = map(self.normalize_string, results)
         return list(Set(normalized_results))
 
-    def extract_issue_name(self, text):
+    def extract_issue_names(self, text):
         # Common Stock
-        common_stock_pat = re.compile("Common Stock", re.IGNORECASE | re.MULTILINE)
+        common_stock_pat = re.compile(r'(Common Stock(, \$[0-9]+\.[0-9]+ par value per share)*)', re.IGNORECASE | re.MULTILINE)
         match = common_stock_pat.search(text)
         if match:
-            return "Common Stock"
+            return match.group(1)
 
         # Notes
         notes_pat = re.compile(r'([0-9]+\.[0-9]+%\s+([\w\W]*?)Notes*\s+due\s+[0-9]{4})', re.IGNORECASE | re.MULTILINE)
@@ -42,6 +42,6 @@ class GenericParser(BaseParser):
         return None
 
     def parse_text(self, text, **kwargs):
-        cusip = self.extract_cusip(text)
-        issue_name = self.extract_issue_name(text)
-        return {'cusip' : cusip, 'issue_name' : issue_name}
+        cusips = self.extract_cusips(text)
+        issue_names = self.extract_issue_names(text)
+        return {'cusip' : cusips, 'issue_name' : issue_names}

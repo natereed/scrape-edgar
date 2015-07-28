@@ -1,28 +1,31 @@
 import logging
-
 import csv
 import os
 import re
-import requests
-import scrapy
+import types
 from urlparse import urlparse
 from posixpath import basename
+
+import requests
+import scrapy
 from scrapy.http import FormRequest
 from scrapy.spider import BaseSpider
 from ScrapeEdgar.items import FilingItem
+from ScrapeEdgar.cleaning_functions import clean_results
 from ScrapeEdgar.parsers.parser13g import Parser13g
 from ScrapeEdgar.parsers.parser13ga import Parser13ga
-from ScrapeEdgar.parsers.parser8k42 import Parser8kEx42
 from ScrapeEdgar.parsers.parser8kEx101 import Parser8kEx101
 from ScrapeEdgar.parsers.parser8kEx402 import Parser8kEx402
 from ScrapeEdgar.parsers.generic_parser import GenericParser
+
+MULTI_VALUE_DELIMITTER = ';'
 
 class EdgarSpider(BaseSpider):
     name = "edgar"
     allowed_domains = ["sec.gov","searchwww.sec.gov"]
 
-    def read_companies(self):
-        f = open("cusip-daily-issuer.csv", "r")
+    def __init__(self, input_file='companies.csv'):
+        self.input_file = input_file
 
     def extract_issuer_name(self, document_name):
         logging.info("Extracting issuer name from " + document_name)
@@ -36,7 +39,7 @@ class EdgarSpider(BaseSpider):
 
     def load_companies(self):
         companies = []
-        with open("companies.csv", "r") as csv_file:
+        with open(self.input_file, "r") as csv_file:
             reader = csv.DictReader(csv_file)
             for row in reader:
                 companies.append(row['COMPANY'])
@@ -57,6 +60,7 @@ class EdgarSpider(BaseSpider):
                                                    'numResults' : '10',
                                                    'queryCo' : company},
                                        callback=self.parse_search_results_follow_next_page)
+            form_request.meta['search_company'] = company
             form_requests.append(form_request)
 
         return form_requests
@@ -117,14 +121,18 @@ class EdgarSpider(BaseSpider):
         logging.info("PARSING %s with content type %s" % (document_name, content_type) )
         logging.info("ISSUER: %s" % item['issuer_name'])
         results = parser.parse(response.text, content_type=content_type, issuer_name=item['issuer_name'])
-
         if results:
+            clean_results(results, MULTI_VALUE_DELIMITTER)
+            print "--- Updating with results: "
+            print results
             item.update(results)
         else:
             logging.warning("No results from %s (%s) " % (item['url'], document_name))
         return item
 
     def parse_search_results_follow_next_page(self, response):
+        search_company = response.meta['search_company']
+        print "----- Search company: %s" % search_company
         for index, sel in enumerate(response.xpath("//div[@id='ifrm2']/table[2]/tr")[1:]):
             date = sel.xpath("td[1]/i/text()").extract()
             if len(date) == 0:
@@ -142,7 +150,7 @@ class EdgarSpider(BaseSpider):
             document_name = sel.xpath("td[2]/a/text()").extract()[0].strip()
             filing_item = FilingItem()
             # Scrape issuer name
-            filing_item['issuer_name'] = self.extract_issuer_name(document_name)
+            filing_item['issuer_name'] = search_company
             filing_item['document_name'] = document_name
             filing_item['date'] = date
             filing_item['url'] = url
