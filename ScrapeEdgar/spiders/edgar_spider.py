@@ -48,7 +48,7 @@ class EdgarSpider(BaseSpider):
     #https://searchwww.sec.gov/EDGARFSClient/jsp/EDGAR_MainAccess.jsp?search_text=CUSIP&sort=Date&formType=1&isAdv=true&stemming=true&numResults=10&queryCo=Dun%20and%20Bradstreet&numResults=10
     def start_requests(self):
         #companies = ['Twitter', 'Dun and Bradstreet', 'Google']
-        companies = self.load_companies()[:10]
+        companies = self.load_companies()
         form_requests = []
         for company in companies:
             form_request = FormRequest("https://searchwww.sec.gov/EDGARFSClient/jsp/EDGAR_MainAccess.jsp",

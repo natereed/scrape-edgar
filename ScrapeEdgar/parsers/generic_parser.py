@@ -4,8 +4,9 @@
 # garbage is another random SEC filing.
 
 from ScrapeEdgar.parsers.base_parser import BaseParser
+from ScrapeEdgar.cleaning_functions import remove_duplicates
+
 import re
-from sets import Set
 
 class GenericParser(BaseParser):
 
@@ -22,7 +23,7 @@ class GenericParser(BaseParser):
 
     def normalize_results(self, results):
         normalized_results = map(self.normalize_string, results)
-        return list(Set(normalized_results))
+        return remove_duplicates(normalized_results)
 
     def extract_issue_names(self, text):
         # Common Stock
@@ -32,7 +33,7 @@ class GenericParser(BaseParser):
             return match.group(1)
 
         # Notes
-        notes_pat = re.compile(r'([0-9]+\.[0-9]+%\s+([\w\W]*?)Notes*\s+due\s+[0-9]{4})', re.IGNORECASE | re.MULTILINE)
+        notes_pat = re.compile(r'([0-9]+\.*\s*[0-9/]+%\s+(Senior|Convertible|Convertible Senior){0,1}\s*Notes*\s+due\s+[0-9]{4})', re.IGNORECASE | re.MULTILINE)
         matches = re.findall(notes_pat, text)
 
         if matches:

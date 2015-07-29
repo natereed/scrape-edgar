@@ -11,12 +11,11 @@ class Parser8k41:
         return {}
         return None
 
-f = open("EX-4.1.html", "r")
-doc = f.read()
-f.close()
+#f = open("EX-4.1.html", "r")
+#doc = f.read()
+#f.close()
 
-parser = Parser8k41(doc)
-results = parser.parse()
-print results
+#parser = Parser8k41(doc)
+#results = parser.parse()
 
 

@@ -11,7 +11,6 @@ class Parser8kEx101Tests(unittest.TestCase):
     def setUp(self):
         self.parser = Parser8kEx101()
         contents = load_file_contents("example_filings/google-EX-1.01-term-sheet.html")
-        print contents
         self.results = self.parser.parse(contents, "text/html")
 
     def test_extract_cusip(self):
