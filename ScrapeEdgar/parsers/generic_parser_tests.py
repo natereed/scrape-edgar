@@ -14,7 +14,7 @@ class GenericParserTests(unittest.TestCase):
         contents = load_file_contents("example_filings/EX-4.2-Lockheed.html")
         results = self.parser.parse(contents)
         self.assertEqual(['539830 AS8'], results.get("cusip"))
-        self.assertEqual(['4.121% NOTE DUE 2013'], results.get("issue_name"))
+        self.assertEqual(['4.121% NOTES DUE 2013'], results.get("issue_name"))
 
     def test_extract_multiple_cusips(self):
         contents = load_file_contents("example_filings/EX-99-multiple_convertible_notes.html")
@@ -46,3 +46,9 @@ class GenericParserTests(unittest.TestCase):
         results = self.parser.parse(contents)
         self.assertEqual(['04939MAM1', '04939MAL3', '04939MAJ8'], results.get('cusip'))
         self.assertEqual(['6 5/8% SENIOR NOTES DUE 2020', '4 3/4% SENIOR NOTES DUE 2021', '5 7/8% SENIOR NOTES DUE 2023'], results.get('issue_name'))
+
+    def test_broken_issue_names_from_microsoft(self):
+        contents = load_file_contents("example_filings/EX-4.2-MSFT.html")
+        results = self.parser.parse(contents)
+        self.assertEqual(['1.625% NOTES DUE 2018', '3.625% NOTES DUE 2023', '4.875% NOTES DUE 2043'], results.get('issue_name'))
+        self.assertEqual(['594918 AV6', '594918 AW4', '594918 AX2'], results.get('cusip'))

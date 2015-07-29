@@ -19,7 +19,9 @@ class GenericParser(BaseParser):
         return None
 
     def normalize_string(self, string):
-        return re.sub(r'\s+', ' ', string.upper().strip())
+        string = re.sub(r'\s+', ' ', string.upper().strip())
+        # Standardize pluralization
+        return re.sub(r'NOTE\b', 'NOTES', string, flags=re.IGNORECASE)
 
     def normalize_results(self, results):
         normalized_results = map(self.normalize_string, results)
