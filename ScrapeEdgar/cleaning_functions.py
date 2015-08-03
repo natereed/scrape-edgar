@@ -20,7 +20,9 @@ def format_list(list, delim=','):
 
     return ("%s " % delim).join(list)
 
-def clean_results(results, delim=';'):
+def clean_scraped_data(results, delim=';', max_field_length=100000):
+    # Note: the csv field limit on my system is 131072, so this should provide enough
+    # buffer to write out most of the field yet stay within the limit imposed by csv.
     for key in results.keys():
         val = results[key]
         if not val:
@@ -36,6 +38,11 @@ def clean_results(results, delim=';'):
 
     if results['cusip']:
         results['cusip'] = format_list(results['cusip'], delim)
+
+    # Limit length
+    for key in results.keys():
+        if results[key]:
+            results[key] = results[key][:max_field_length]
 
     return results
 

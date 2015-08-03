@@ -11,7 +11,7 @@ import scrapy
 from scrapy.http import FormRequest
 from scrapy.spider import BaseSpider
 from ScrapeEdgar.items import FilingItem
-from ScrapeEdgar.cleaning_functions import clean_results
+from ScrapeEdgar.cleaning_functions import clean_scraped_data
 from ScrapeEdgar.parsers.parser13g import Parser13g
 from ScrapeEdgar.parsers.parser13ga import Parser13ga
 from ScrapeEdgar.parsers.parser8kEx101 import Parser8kEx101
@@ -19,6 +19,7 @@ from ScrapeEdgar.parsers.parser8kEx402 import Parser8kEx402
 from ScrapeEdgar.parsers.generic_parser import GenericParser
 
 MULTI_VALUE_DELIMITTER = ';'
+MAX_FIELD_LENGTH=100000
 
 class EdgarSpider(BaseSpider):
     name = "edgar"
@@ -122,7 +123,7 @@ class EdgarSpider(BaseSpider):
         logging.info("ISSUER: %s" % item['issuer_name'])
         results = parser.parse(response.text, content_type=content_type, issuer_name=item['issuer_name'])
         if results:
-            clean_results(results, MULTI_VALUE_DELIMITTER)
+            clean_scraped_data(results, MULTI_VALUE_DELIMITTER, MAX_FIELD_LENGTH)
             print "--- Updating with results: "
             print results
             item.update(results)
@@ -131,8 +132,8 @@ class EdgarSpider(BaseSpider):
         return item
 
     def parse_search_results_follow_next_page(self, response):
-        search_company = response.meta['search_company']
-        print "----- Search company: %s" % search_company
+        search_company = response.meta.get('search_company')
+
         for index, sel in enumerate(response.xpath("//div[@id='ifrm2']/table[2]/tr")[1:]):
             date = sel.xpath("td[1]/i/text()").extract()
             if len(date) == 0:
@@ -156,6 +157,10 @@ class EdgarSpider(BaseSpider):
             filing_item['url'] = url
             request = scrapy.Request(url, callback=self.parse_document)
             request.meta['item'] = filing_item
+            request.meta['search_company'] = search_company # Set this for the next page of search results
+            if not request.meta['search_company']:
+                logging.error("No search company set in request.meta!")
+
             yield request
 
         # Follow next
@@ -164,5 +169,6 @@ class EdgarSpider(BaseSpider):
         if next_page:
             url = response.urljoin(next_page[0].extract())
             request = scrapy.Request(url, self.parse_search_results_follow_next_page)
+            request.meta['search_company'] = search_company # Set this for the next page of search results
             yield request
 
