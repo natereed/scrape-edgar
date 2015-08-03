@@ -5,7 +5,7 @@ def validate_cusip(cusip):
     cusip = re.sub("\s+", "", cusip)
 
     if len(cusip) != 9:
-        return {'is_valid': False, 'reason': 'Cusip not correct length'}
+        return {'is_valid': False, 'reason': 'Cusip not correct length. Input: %s' % cusip}
 
     checksum_digit = cusip[8]
     if not checksum_digit.isdigit():
