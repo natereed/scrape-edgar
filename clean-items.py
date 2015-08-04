@@ -68,6 +68,8 @@ def clean_address(row):
             row['address'] = row['address'].replace(match.group(1), "").strip()
             print "New address: " + row['address']
         match = re.search("Address,*\s+of\s+Issuer'*\s*s\s+Principal\s+Executive\s+Offices(.*)", row['address'], flags=re.IGNORECASE)
+
+        # Remove redundant "Address of Issuer's..."
         if match:
             print "Found redundant descriptive text in the address"
             row['address'] = match.group(1).strip()
@@ -79,8 +81,6 @@ def clean_address(row):
             print "Removing ending punctuation"
             row['address'] = match.group(1).strip()
             print "New address: " + row['address']
-        # Remove redundant "Address of Issuer's..."
-
     else:
         return
 
