@@ -88,6 +88,14 @@ def clean_address(row):
 
 def clean_row(row):
     clean_address(row)
+    # Clean cusip #'s
+    cusips = row['cusip'].split(";")
+    cleaned_cusips = []
+    for cusip in cusips:
+        cusip = cusip.replace(" ", "")
+        cleaned_cusips.append(cusip)
+
+    row['cusip'] = "; ".join(cleaned_cusips)
 
 def validate_row(row):
     if not row['cusip']:
