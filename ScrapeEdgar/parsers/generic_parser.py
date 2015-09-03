@@ -3,20 +3,39 @@
 # prone to errors, as the inputs might not have been tested before. "Garbage in, garbage", although one man's
 # garbage is another random SEC filing.
 
+from nltk.corpus import words
 from ScrapeEdgar.parsers.base_parser import BaseParser
 from ScrapeEdgar.cleaning_functions import remove_duplicates
+from ScrapeEdgar.cusip_utils.check_digit import validate_cusip
 
 import re
 
 class GenericParser(BaseParser):
 
     def extract_cusips(self, text):
-        pat = re.compile(r'CUSIP\s+(no|number|num|#)*\.*:*\s*(\w{6}\W*\w{3})\b', re.IGNORECASE | re.MULTILINE)
-        matches = re.findall(pat, text)
+        pat1 = re.compile(r'CUSIP\s+(no|number|num|#)*\.*:*\s*(\w{6}\W*\w{3})\b', re.IGNORECASE | re.MULTILINE)
+        pat2 = re.compile(r'CUSIP\s*(no|number|num|#)*\.*(/ISIN)*:*\s*(\w{6}\W*\w{3})', re.IGNORECASE | re.MULTILINE)
+
+        matches = re.findall(pat1, text)
         if matches:
             return self.normalize_results([match[1] for match in matches])
 
-        return None
+        matches = re.findall(pat2, text)
+        if matches:
+            return self.normalize_results([match[2] for match in matches])
+
+        return self.extract_cusips_using_nlp(text)
+
+    def extract_cusips_using_nlp(self, text):
+        pat = re.compile(r'(\w{6}\s*\w{3})\b', re.IGNORECASE | re.MULTILINE)
+        matches = re.findall(pat, text)
+        cusips = []
+        for candidate in matches:
+            print "Candidate: " + candidate
+            if not candidate in words.words() and validate_cusip(candidate)["is_valid"]:
+                cusips.append(candidate)
+
+        return self.normalize_results(cusip for cusip in cusips)
 
     def normalize_string(self, string):
         string = re.sub(r'\s+', ' ', string.upper().strip())

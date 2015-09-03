@@ -86,8 +86,6 @@ class EdgarSpider(BaseSpider):
             parser = Parser13g()
         elif re.match(u'EX-1\.01 of 8-K',document_type):
             parser = Parser8kEx101()
-        elif re.match(u'EX-4\.02 of 8-K', document_type):
-            parser = Parser8kEx402()
         else:
             logging.warn("Can't find parser for %s, %s. Using generic parser." % (document_type, content_type))
             parser = GenericParser()
