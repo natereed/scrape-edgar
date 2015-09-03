@@ -58,3 +58,9 @@ class GenericParserTests(unittest.TestCase):
         results = self.parser.parse(contents)
         self.assertEqual(['5.250% NOTES DUE 2043'], results.get('issue_name'))
         self.assertEqual(['655044AG0'], results.get('cusip'))
+
+    def test_rejects_long_issue_names(self):
+        contents = load_file_contents("example_filings/aflac_ex_4.1.html")
+        results = self.parser.parse(contents)
+        self.fail("Not yet implemented")
+        self.assertEqual(['3.625% SENIOR NOTES DUE 2024'], results.get("issue_name"))
