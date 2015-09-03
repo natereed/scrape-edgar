@@ -1,0 +1,311 @@
+<DOCUMENT>
+<TYPE>SC 13G
+<SEQUENCE>1
+<FILENAME>filing.txt
+<TEXT>
+
+SCHEDULE 13G
+
+Amendment No. 0
+DUN & BRADSTREET CORP DEL NEW
+Common Stock
+Cusip #26483E100
+
+
+Cusip #26483E100
+Item 1:	Reporting Person - FMR LLC
+Item 4:	Delaware
+Item 5:	577,251
+Item 6:	0
+Item 7:	4,260,629
+Item 8:	0
+Item 9:	4,260,629
+Item 11:	10.424%
+Item 12:	    HC
+
+
+Cusip #26483E100
+Item 1:	Reporting Person - Edward C. Johnson 3d
+Item 4:	United States of America
+Item 5:	0
+Item 6:	0
+Item 7:	4,260,629
+Item 8:	0
+Item 9:	4,260,629
+Item 11:	10.424%
+Item 12:	IN
+
+
+
+
+	SCHEDULE 13G - TO BE INCLUDED IN
+STATEMENTS
+	FILED PURSUANT TO RULE 13d-1(b) or 13d-2(b)
+
+
+
+Item 1(a).	Name of Issuer:
+
+		DUN & BRADSTREET CORP DEL
+NEW
+
+Item 1(b).	Name of Issuer's Principal Executive Offices:
+
+		103 JFK PKWY
+		SHORT HILLS, NJ
+		07078
+
+Item 2(a).	Name of Person Filing:
+
+		FMR LLC
+
+Item 2(b).	Address or Principal Business Office or, if None,
+Residence:
+
+		245 Summer Street, Boston,
+Massachusetts  02210
+
+Item 2(c).	Citizenship:
+
+		Not applicable
+
+Item 2(d).	Title of Class of Securities:
+
+		Common Stock
+
+Item 2(e).	CUSIP Number:
+
+		26483E100
+
+Item 3.	This statement is filed pursuant to Rule 13d-1(b) or 13d-2(b)
+and the person filing, FMR LLC, is a parent holding company
+in accordance with Section 240.13d-1(b)(ii)(G).  (Note:  See
+Item 7).
+
+Item 4.	Ownership
+
+	(a)	Amount Beneficially Owned:	4,260,629
+
+	(b)	Percent of Class:	10.424%
+
+	(c)	Number of shares as to which such
+person has:
+
+	(i)	sole power to vote or to direct
+the vote:	577,251
+
+	(ii)	shared power to vote or to
+direct the vote:	0
+
+	(iii)	sole power to dispose or to
+direct the disposition of:	4,260,629
+
+	(iv)	shared power to dispose or to
+direct the disposition of:	0
+
+
+
+Item 5.	Ownership of Five Percent or Less of a Class.
+
+	Not applicable.
+
+Item 6.	Ownership of More than Five Percent on Behalf of Another
+Person.
+
+	Various persons have the right to receive or the power to
+direct the receipt of dividends from, or the proceeds from the
+sale of, the Common Stock of DUN & BRADSTREET CORP
+DEL NEW.  No one person's interest in the Common Stock of
+DUN & BRADSTREET CORP DEL NEW is more than five
+percent of the total outstanding Common Stock.
+
+Item 7.	Identification and Classification of the Subsidiary Which
+Acquired the Security Being Reported on By the Parent
+Holding Company.
+
+	See attached Exhibit A.
+
+Item 8.	Identification and Classification of Members of
+the Group.
+
+	Not applicable.  See attached Exhibit A.
+
+Item 9.	Notice of Dissolution of Group.
+
+	Not applicable.
+
+Item 10.	Certification.
+
+	By signing below I certify that, to the best of my knowledge
+and belief, the securities referred to above were acquired in the
+ordinary course of business and were not acquired for the
+purpose of and do not have the effect of changing or
+influencing the control of the issuer of such securities and
+were not acquired in connection with or as a participant in any
+transaction having such purpose or effect.
+
+Signature
+
+	After reasonable inquiry and to the best of my knowledge and
+belief, I certify that the information set forth in this statement
+is true, complete and correct.
+
+April 09, 2013
+Date
+
+ /s/ Scott C. Goebel
+Signature
+
+Scott C. Goebel
+Duly authorized under Power of Attorney
+effective as of June 1, 2008 by and on behalf of FMR LLC
+and its direct and indirect  subsidiaries
+
+
+	SCHEDULE 13G - TO BE INCLUDED IN
+STATEMENTS
+	FILED PURSUANT TO RULE 13d-1(b) or 13d-2(b)
+
+
+
+	Pursuant to the instructions in Item 7 of Schedule 13G,
+Fidelity Management & Research Company ("Fidelity"), 245
+Summer Street, Boston, Massachusetts 02210, a wholly-
+owned subsidiary of FMR LLC and an investment adviser
+registered under Section 203 of the Investment Advisers Act
+of 1940, is the beneficial owner of 3,683,967 shares or 9.013%
+of the Common Stock outstanding of DUN & BRADSTREET
+CORP DEL NEW  ("the Company") as a result of acting as
+investment adviser to various investment companies registered
+under Section 8 of the Investment Company Act of 1940.
+
+	Edward C. Johnson 3d and FMR LLC, through its
+control of Fidelity, and the funds each has sole power to
+dispose of the 3,683,967 shares owned by the Funds.
+
+	Members of the family of Edward C. Johnson 3d,
+Chairman of FMR LLC, are the predominant owners, directly
+or through trusts, of Series B voting common shares of FMR
+LLC, representing 49% of the voting power of FMR LLC.
+The Johnson family group and all other Series B shareholders
+have entered into a shareholders' voting agreement under
+which all Series B voting common shares will be voted in
+accordance with the majority vote of Series B voting common
+shares.  Accordingly, through their ownership of voting
+common shares and the execution of the shareholders' voting
+agreement, members of the Johnson family may be deemed,
+under the Investment Company Act of 1940, to form a
+controlling group with respect to FMR LLC.
+
+	Neither FMR LLC nor Edward C. Johnson 3d,
+Chairman of FMR LLC, has the sole power to vote or direct
+the voting of the shares owned directly by the Fidelity Funds,
+which power resides with the Funds' Boards of Trustees.
+Fidelity carries out the voting of the shares under written
+guidelines established by the Funds' Boards of Trustees.
+
+	Fidelity Management Trust Company, 245 Summer
+Street, Boston, Massachusetts 02210, a wholly-owned
+subsidiary of FMR LLC and a bank as defined in Section
+3(a)(6) of the Securities Exchange Act of 1934, is the
+beneficial owner of  13,286 shares or 0.033% of the Common
+Stock outstanding of the Company as a result of its serving as
+investment manager of the institutional account(s).
+
+	Edward C. Johnson 3d and FMR LLC, through its
+control of Fidelity Management Trust Company, each has sole
+dispositive power over 13,286 shares and sole power to vote
+or to direct the voting of 13,286 shares of Common Stock
+owned by the institutional account(s) as reported above.
+
+	Strategic Advisers, Inc., 245 Summer Street, Boston,
+MA 02210, a wholly-owned subsidiary of FMR LLC and an
+investment adviser registered under Section 203 of the
+Investment Advisers Act of 1940, provides investment
+advisory services to individuals.  As such, FMR LLC's
+beneficial ownership includes 68,632 shares, or 0.168%, of the
+Common Stock outstanding of DUN & BRADSTREET
+CORP DEL NEW, beneficially owned through Strategic
+Advisers, Inc.
+
+	Pyramis Global Advisors, LLC ("PGALLC"), 900
+Salem Street, Smithfield, Rhode Island, 02917, an indirect
+wholly-owned subsidiary of FMR LLC and an investment
+adviser registered under Section 203 of the Investment
+Advisers Act of 1940, is the beneficial owner of 324,130
+shares or 0.793% of the outstanding Common Stock of DUN
+& BRADSTREET CORP DEL NEW as a result of its serving
+as investment adviser to institutional accounts, non-U.S.
+mutual funds, or investment companies registered under
+Section 8 of the Investment Company Act of 1940 owning
+such shares.
+
+	Edward C. Johnson 3d and FMR LLC, through its
+control of PGALLC, each has sole dispositive power over
+324,130 shares and sole power to vote or to direct the voting
+of 324,130 shares of Common Stock owned by the
+institutional accounts or funds advised by PGALLC as
+reported above.
+
+	Pyramis Global Advisors Trust Company ("PGATC"),
+900 Salem Street, Smithfield, Rhode Island, 02917, an indirect
+wholly-owned subsidiary of FMR LLC and a bank as defined
+in Section 3(a)(6) of the Securities Exchange Act of 1934, is
+the beneficial owner of 170,614 shares or 0.417% of the
+outstanding Common Stock of the DUN & BRADSTREET
+CORP DEL NEW as a result of its serving as investment
+manager of institutional accounts owning such shares.
+
+	Edward C. Johnson 3d and FMR LLC, through its
+control of Pyramis Global Advisors Trust Company, each has
+sole dispositive power over 170,614 shares and sole power to
+vote or to direct the voting of 170,614 shares of Common
+Stock owned by the institutional accounts managed by
+PGATC as reported above.
+
+
+
+	SCHEDULE 13G - TO BE INCLUDED IN
+STATEMENTS
+	FILED PURSUANT TO RULE 13d-1(b) or 13d-2(b)
+	RULE 13d-1(f)(1)  AGREEMENT
+
+	The undersigned persons, on April 09, 2013, agree and
+consent to the joint filing on their behalf of this Schedule 13G
+in connection with their beneficial ownership of the Common
+Stock of DUN & BRADSTREET CORP DEL NEW at March
+31, 2013.
+
+	FMR LLC
+
+	By /s/ Scott C. Goebel
+	Scott C. Goebel
+	Duly authorized under Power of Attorney effective as
+of June 1, 2008, by and on behalf of FMR LLC and its direct
+and indirect subsidiaries
+
+	Edward C. Johnson 3d
+
+	By /s/ Scott C. Goebel
+	Scott C. Goebel
+	Duly authorized under Power of Attorney effective as
+of June 1, 2008, by and on behalf of Edward C. Johnson 3d
+
+	Fidelity Management & Research Company
+
+	By /s/ Scott C. Goebel
+	Scott C. Goebel
+	Senior V.P. and General Counsel
+
+
+
+
+
+
+
+
+
+
+
+</TEXT>
+</DOCUMENT>
