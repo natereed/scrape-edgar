@@ -9,6 +9,7 @@ from ScrapeEdgar.cleaning_functions import remove_duplicates
 from ScrapeEdgar.cusip_utils.check_digit import validate_cusip
 
 import re
+import logging
 
 class GenericParser(BaseParser):
 
@@ -24,12 +25,14 @@ class GenericParser(BaseParser):
         if matches:
             return self.normalize_results([match[2] for match in matches])
 
-        return self.extract_cusips_using_nlp(text)
+        #return self.extract_cusips_using_nlp(text)
+        return []
 
     def extract_cusips_using_nlp(self, text):
         pat = re.compile(r'(\w{6}\s*\w{3})\b', re.IGNORECASE | re.MULTILINE)
         matches = re.findall(pat, text)
         cusips = []
+        logging.info("%d candidates for CUSIP, comparing against dictionary words" % len(matches))
         for candidate in matches:
             print "Candidate: " + candidate
             if not candidate in words.words() and validate_cusip(candidate)["is_valid"]:

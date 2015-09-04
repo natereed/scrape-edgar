@@ -17,7 +17,7 @@ To deploy to Scrapyd:
 
 This creates a spider called "edgar". Now that it's deployed, we can schedule a job:
 
-  curl http://localhost:6800/schedule.json -d project=ScrapeEdgar -d spider=edgar
+  curl http://localhost:6800/schedule.json -d project=ScrapeEdgar -d spider=edgar -d input_file=companies.csv
 
 ## Automated tests
 
