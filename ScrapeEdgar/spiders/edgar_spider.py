@@ -25,7 +25,7 @@ class EdgarSpider(BaseSpider):
     name = "edgar"
     allowed_domains = ["sec.gov","searchwww.sec.gov"]
 
-    def __init__(self, input_file='companies.csv'):
+    def __init__(self, input_file='companies.csv', **kwargs):
         self.input_file = input_file
 
     def extract_issuer_name(self, document_name):

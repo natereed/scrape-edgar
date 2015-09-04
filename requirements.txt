@@ -9,6 +9,7 @@ idna==2.0
 ipaddress==1.0.14
 jdcal==1.0
 lxml==3.4.4
+nltk==3.0.4
 openpyxl==2.2.0b1
 pyasn1==0.1.8
 pyasn1-modules==0.0.7
@@ -16,6 +17,7 @@ pycparser==2.14
 pyOpenSSL==0.15.1
 python-dateutil==2.2
 queuelib==1.3.0
+requests==2.7.0
 Scrapy==1.0.3
 scrapyd==1.1.0
 scrapyd-client==1.0.1
