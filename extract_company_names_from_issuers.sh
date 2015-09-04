@@ -1,1 +1,1 @@
-csvcut -c 3 CGS/CCMASTER_ISSUER.CSV > company_names.csv
+csvcut -c 3 CGS/CCMASTER_ISSUER.CSV > companies.csv
