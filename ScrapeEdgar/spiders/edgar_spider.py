@@ -5,6 +5,7 @@ import re
 import types
 from urlparse import urlparse
 from posixpath import basename
+import StringIO
 
 import requests
 import scrapy
@@ -40,6 +41,18 @@ class EdgarSpider(BaseSpider):
 
     def load_companies(self):
         companies = []
+
+        if re.match(r'https*', self.input_file):
+            response = requests.request('GET', self.input_file)
+            if response.status_code == 200:
+                reader = csv.DictReader(StringIO.StringIO(response.content))
+                for row in reader:
+                    companies.append(row['COMPANY'])
+                return companies
+            else:
+                logging.error("Couldn't get companies from " + self.input_file)
+                raise Exception("Unable to find companies to scrape. Aborting...")
+
         with open(self.input_file, "r") as csv_file:
             reader = csv.DictReader(csv_file)
             for row in reader:
