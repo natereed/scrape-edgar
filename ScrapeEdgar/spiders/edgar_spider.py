@@ -116,14 +116,6 @@ class EdgarSpider(BaseSpider):
             logging.error("Unable to retrieve %s " % document_name)
             return item
 
-        # Save response to downloads
-        if not os.path.exists("downloads"):
-            os.makedirs("downloads")
-        parsed_url = urlparse(item['url'])
-        out = open("downloads/%s" % basename(parsed_url.path), "w")
-        out.write(response.text)
-        out.close()
-
         parser = self.select_parser(document_name, content_type)
 
         # Set item fields...

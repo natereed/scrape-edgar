@@ -16,9 +16,9 @@ BOT_NAME = 'ScrapeEdgar'
 SPIDER_MODULES = ['ScrapeEdgar.spiders']
 NEWSPIDER_MODULE = 'ScrapeEdgar.spiders'
 
-FEED_URI=os.environ['SCRAPY_FEED_URI']
-AWS_ACCESS_KEY_ID = os.environ['SCRAPY_AWS_ACCESS_KEY_ID']
-AWS_SECRET_ACCESS_KEY = os.environ['SCRAPY_AWS_SECRET_ACCESS_KEY']
+#FEED_URI=os.environ.get('SCRAPY_FEED_URI')
+#AWS_ACCESS_KEY_ID = os.environ.get('SCRAPY_AWS_ACCESS_KEY_ID')
+#AWS_SECRET_ACCESS_KEY = os.environ.get('SCRAPY_AWS_SECRET_ACCESS_KEY')
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'ScrapeEdgar (+http://www.yourdomain.com)'
