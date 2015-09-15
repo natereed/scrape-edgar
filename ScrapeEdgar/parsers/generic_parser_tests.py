@@ -45,7 +45,8 @@ class GenericParserTests(unittest.TestCase):
         contents = load_file_contents("example_filings/targa_form_425.html")
         results = self.parser.parse(contents)
         self.assertEqual(['04939MAM1', '04939MAL3', '04939MAJ8'], results.get('cusip'))
-        self.assertEqual(['6 5/8% SENIOR NOTES DUE 2020', '4 3/4% SENIOR NOTES DUE 2021', '5 7/8% SENIOR NOTES DUE 2023'], results.get('issue_name'))
+        self.assertEqual(['6 5/8% SENIOR NOTES DUE 2020', '4 3/4% SENIOR NOTES DUE 2021', '5 7/8% SENIOR NOTES DUE 2023',
+                          'SENIOR NOTES DUE 2018'], results.get('issue_name'))
 
     def test_broken_issue_names_from_microsoft(self):
         contents = load_file_contents("example_filings/EX-4.2-MSFT.html")
@@ -62,5 +63,12 @@ class GenericParserTests(unittest.TestCase):
     def test_rejects_long_issue_names(self):
         contents = load_file_contents("example_filings/aflac_ex_4.1.html")
         results = self.parser.parse(contents)
-        self.fail("Not yet implemented")
         self.assertEqual(['3.625% SENIOR NOTES DUE 2024'], results.get("issue_name"))
+
+    def test_home_depot_notes_breakage(self):
+        # This error was caused by looking for the words "Common Stock" as the first possible match. The phrase
+        # can appear in filings for other types of securities, too. Also, we need to match "Floating Rate Notes due 2017"
+        # and similar phrases. Right now it's looking for a %.
+        contents = load_file_contents('example_filings/hd_exhibit11x09082015.html')
+        results = self.parser.parse(contents)
+        self.assertEqual(['FLOATING RATE NOTES DUE 2017', '3.35% NOTES DUE 2025'], results.get("issue_name"))

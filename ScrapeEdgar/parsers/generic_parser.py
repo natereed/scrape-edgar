@@ -50,19 +50,20 @@ class GenericParser(BaseParser):
         return remove_duplicates(normalized_results)
 
     def extract_issue_names(self, text):
-        # Common Stock
-        common_stock_pat = re.compile(r'(Common Stock(, \$[0-9]+\.[0-9]+ par value per share)*)', re.IGNORECASE | re.MULTILINE)
-        match = common_stock_pat.search(text)
-        if match:
-            return match.group(1)
-
         # Notes
-        notes_pat = re.compile(r'([0-9]+\.*\s*[0-9/]+%\s+(Senior|Convertible|Convertible Senior){0,1}\s*Notes*\s+due\s+[0-9]{4})', re.IGNORECASE | re.MULTILINE)
+        notes_pat = re.compile(r'(([0-9]+\.*\s*[0-9/]+%\s+){0,1}(Senior|Convertible|Convertible Senior|Floating Rate){0,1}\s*Notes*\s+due\s+[0-9]{4})',
+                               re.IGNORECASE | re.MULTILINE)
         matches = re.findall(notes_pat, text)
 
         if matches:
             results = self.normalize_results([match[0] for match in matches])
             return results
+
+        # Common Stock
+        common_stock_pat = re.compile(r'(Common Stock(, \$[0-9]+\.[0-9]+ par value per share)*)', re.IGNORECASE | re.MULTILINE)
+        match = common_stock_pat.search(text)
+        if match:
+            return match.group(1)
 
         return None
 

@@ -136,6 +136,7 @@ class EdgarSpider(BaseSpider):
 
     def parse_search_results_follow_next_page(self, response):
         search_company = response.meta.get('search_company')
+        logging.info("Parsing search results for " + search_company)
 
         for index, sel in enumerate(response.xpath("//div[@id='ifrm2']/table[2]/tr")[1:]):
             date = sel.xpath("td[1]/i/text()").extract()
