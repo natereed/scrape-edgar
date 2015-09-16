@@ -28,6 +28,7 @@ class EdgarSpider(BaseSpider):
 
     def __init__(self, input_file='companies.csv', **kwargs):
         self.input_file = input_file
+        self.input_companies = kwargs.get('input_companies')
 
     def extract_issuer_name(self, document_name):
         logging.info("Extracting issuer name from " + document_name)
@@ -40,6 +41,9 @@ class EdgarSpider(BaseSpider):
             logging.info("No match for issuer name")
 
     def load_companies(self):
+        if self.input_companies:
+            return self.input_companies.split(",")
+
         companies = []
 
         if re.match(r'https*', self.input_file):
@@ -75,6 +79,7 @@ class EdgarSpider(BaseSpider):
                                                    'queryCo' : company},
                                        callback=self.parse_search_results_follow_next_page)
             form_request.meta['search_company'] = company
+            form_request.meta['page_num'] = 1
             form_requests.append(form_request)
 
         return form_requests
@@ -105,10 +110,16 @@ class EdgarSpider(BaseSpider):
         return parser
 
     def parse_document(self, response):
+        logging.debug("------ parse_document ------")
         item = response.meta['item']
+        logging.debug("search_company: " + response.meta['search_company'])
+
         response = requests.get(item['url'])
         document_name = item['document_name'].strip()
-        logging.info("--- Parse document %s, %s: " % (document_name, item['issuer_name']))
+        logging.debug("document_name: " + document_name)
+        issuer_name = self.extract_issuer_name(document_name)
+        logging.debug("issuer_name: " + issuer_name)
+        logging.debug("--- Parse document %s for issuer %s" % (document_name, issuer_name))
 
         content_type = response.headers['content-type']
 
@@ -122,9 +133,9 @@ class EdgarSpider(BaseSpider):
         if not parser:
             return item
 
-        logging.info("PARSING %s with content type %s" % (document_name, content_type) )
-        logging.info("ISSUER: %s" % item['issuer_name'])
-        results = parser.parse(response.text, content_type=content_type, issuer_name=item['issuer_name'])
+        logging.debug("PARSING %s with content type %s" % (document_name, content_type) )
+        logging.debug ("ISSUER: %s" % issuer_name)
+        results = parser.parse(response.text, content_type=content_type, issuer_name=issuer_name)
         if results:
             clean_scraped_data(results, MULTI_VALUE_DELIMITTER, MAX_FIELD_LENGTH)
             print "--- Updating with results: "
@@ -136,9 +147,16 @@ class EdgarSpider(BaseSpider):
 
     def parse_search_results_follow_next_page(self, response):
         search_company = response.meta.get('search_company')
-        logging.info("Parsing search results for " + search_company)
+        page_num = response.meta.get('page_num')
+
+        logging.debug("------ parse_search_results_follow_next_page -----")
+        logging.debug("Page num: " + str(page_num))
+        logging.debug("Search company: " + search_company)
+
+        logging.info("Parsing search results for " + search_company + ", page " + str(page_num))
 
         for index, sel in enumerate(response.xpath("//div[@id='ifrm2']/table[2]/tr")[1:]):
+            logging.debug("Index: " + str(index))
             date = sel.xpath("td[1]/i/text()").extract()
             if len(date) == 0:
                 continue
@@ -146,6 +164,7 @@ class EdgarSpider(BaseSpider):
                 date = date[0]
 
             href = sel.xpath("td/a[@id='viewFiling']/@href").extract()
+            logging.debug("HREF: " + str(href))
             if len(href) == 0:
                 continue
             else:
@@ -155,7 +174,6 @@ class EdgarSpider(BaseSpider):
             document_name = sel.xpath("td[2]/a/text()").extract()[0].strip()
             filing_item = FilingItem()
             # Scrape issuer name
-            filing_item['issuer_name'] = search_company
             filing_item['document_name'] = document_name
             filing_item['date'] = date
             filing_item['url'] = url
@@ -171,8 +189,10 @@ class EdgarSpider(BaseSpider):
         next_page = response.xpath("//table[@id='header']//a[@title='Next Page']/@href")
 
         if next_page:
+            logging.debug("Following next page...")
             url = response.urljoin(next_page[0].extract())
             request = scrapy.Request(url, self.parse_search_results_follow_next_page)
             request.meta['search_company'] = search_company # Set this for the next page of search results
+            request.meta['page_num'] = page_num + 1
             yield request
 
