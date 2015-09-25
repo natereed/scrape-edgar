@@ -13,6 +13,7 @@ class BaseParser:
             return None
 
         results['issuer_name'] = kwargs.get('issuer_name')
+        results['search_company'] = kwargs.get('search_company')
         return results
 
     def parse_html(self, doc, **kwargs):

@@ -112,6 +112,7 @@ class EdgarSpider(BaseSpider):
     def parse_document(self, response):
         logging.debug("------ parse_document ------")
         item = response.meta['item']
+        search_company = response.meta['search_company']
         logging.debug("search_company: " + response.meta['search_company'])
 
         response = requests.get(item['url'])
@@ -135,7 +136,7 @@ class EdgarSpider(BaseSpider):
 
         logging.debug("PARSING %s with content type %s" % (document_name, content_type) )
         logging.debug ("ISSUER: %s" % issuer_name)
-        results = parser.parse(response.text, content_type=content_type, issuer_name=issuer_name)
+        results = parser.parse(response.text, content_type=content_type, issuer_name=issuer_name, search_company=search_company)
         if results:
             clean_scraped_data(results, MULTI_VALUE_DELIMITTER, MAX_FIELD_LENGTH)
             print "--- Updating with results: "

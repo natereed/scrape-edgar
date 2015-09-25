@@ -15,3 +15,4 @@ class FilingItem(scrapy.Item):
     url = scrapy.Field()
     cusip = scrapy.Field()
     address = scrapy.Field()
+    search_company = scrapy.Field()
