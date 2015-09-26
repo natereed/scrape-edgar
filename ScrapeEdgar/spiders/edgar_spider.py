@@ -112,8 +112,10 @@ class EdgarSpider(BaseSpider):
     def parse_document(self, response):
         logging.debug("------ parse_document ------")
         item = response.meta['item']
-        search_company = response.meta['search_company']
-        logging.debug("search_company: " + response.meta['search_company'])
+        #search_company = response.meta['search_company']
+        search_company = item['search_company']
+
+        logging.debug("search_company: " + search_company)
 
         response = requests.get(item['url'])
         document_name = item['document_name'].strip()
@@ -178,9 +180,11 @@ class EdgarSpider(BaseSpider):
             filing_item['document_name'] = document_name
             filing_item['date'] = date
             filing_item['url'] = url
+            filing_item['search_company'] = search_company
             request = scrapy.Request(url, callback=self.parse_document)
             request.meta['item'] = filing_item
             request.meta['search_company'] = search_company # Set this for the next page of search results
+            logging.debug("Setting search company " + search_company + " for document_name " + document_name)
             if not request.meta['search_company']:
                 logging.error("No search company set in request.meta!")
 
