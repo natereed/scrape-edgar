@@ -128,25 +128,27 @@ class EdgarSpider(BaseSpider):
 
         if response.status_code != 200:
             logging.error("Unable to retrieve %s " % document_name)
-            return item
+            yield item
 
         parser = self.select_parser(document_name, content_type)
 
         # Set item fields...
         if not parser:
-            return item
+            yield item
 
         logging.debug("PARSING %s with content type %s" % (document_name, content_type) )
         logging.debug ("ISSUER: %s" % issuer_name)
         results = parser.parse(response.text, content_type=content_type, issuer_name=issuer_name, search_company=search_company)
         if results:
             clean_scraped_data(results, MULTI_VALUE_DELIMITTER, MAX_FIELD_LENGTH)
-            print "--- Updating with results: "
-            print results
+            logging.debug("--- Updating with results: ")
+            logging.debug(results)
             item.update(results)
+            logging.debug("--- Item:")
+            logging.debug(item)
         else:
             logging.warning("No results from %s (%s) " % (item['url'], document_name))
-        return item
+        yield item
 
     def parse_search_results_follow_next_page(self, response):
         search_company = response.meta.get('search_company')

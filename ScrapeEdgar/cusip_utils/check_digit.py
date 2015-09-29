@@ -1,4 +1,5 @@
 import re
+import logging
 
 # See: https://en.wikipedia.org/wiki/CUSIP#Check_digit_pseudocode
 def validate_cusip(cusip):
@@ -39,6 +40,7 @@ def validate_cusip(cusip):
     if checksum != int(checksum_digit):
         return {'is_valid' : False, 'reason': 'Invalid checksum'}
 
+    logging.debug("CUSIP #%s   checksum: %d    check digit: %d" % (cusip, checksum, checksum_digit))
     return {'is_valid' : True}
 
 
