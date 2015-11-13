@@ -1,10 +1,6 @@
 import logging
 import csv
-import os
 import re
-import types
-from urlparse import urlparse
-from posixpath import basename
 import StringIO
 
 import requests
@@ -26,9 +22,10 @@ class EdgarSpider(BaseSpider):
     name = "edgar"
     allowed_domains = ["sec.gov","searchwww.sec.gov"]
 
-    def __init__(self, input_file='companies.csv', **kwargs):
+    def __init__(self, input_file='companies.csv', search_key='name', **kwargs):
         self.input_file = input_file
         self.input_companies = kwargs.get('input_companies')
+        self.search_key = search_key
 
     def extract_issuer_name(self, document_name):
         logging.info("Extracting issuer name from " + document_name)
@@ -63,26 +60,46 @@ class EdgarSpider(BaseSpider):
                 companies.append(row['COMPANY'])
         return companies
 
-    #https://searchwww.sec.gov/EDGARFSClient/jsp/EDGAR_MainAccess.jsp?search_text=CUSIP&sort=Date&formType=1&isAdv=true&stemming=true&numResults=10&queryCo=Dun%20and%20Bradstreet&numResults=10
+    def load_ciks(self):
+        ciks = []
+        with open(self.input_file, "r") as csv_file:
+            reader = csv.DictReader(csv_file)
+            for row in reader:
+                ciks.append(row['CIK'])
+        return ciks
+
+# CIK:          https://searchwww.sec.gov/EDGARFSClient/jsp/EDGAR_MainAccess.jsp?search_text=CUSIP&sort=Date&formType=1&isAdv=true&stemming=true&numResults=10&queryCik=1115222&numResults=10
+# Company name: https://searchwww.sec.gov/EDGARFSClient/jsp/EDGAR_MainAccess.jsp?search_text=CUSIP&sort=Date&formType=1&isAdv=true&stemming=true&numResults=10&queryCo=Dun%20and%20Bradstreet&numResults=10
     def start_requests(self):
-        #companies = ['Twitter', 'Dun and Bradstreet', 'Google']
-        companies = self.load_companies()
         form_requests = []
-        for company in companies:
-            form_request = FormRequest("https://searchwww.sec.gov/EDGARFSClient/jsp/EDGAR_MainAccess.jsp",
-                                       formdata = {'search_text' : 'CUSIP',
-                                                   'sort' : 'Date',
-                                                   'formType' : '1',
-                                                   'isAdv' : 'true',
-                                                   'stemming' : 'true',
-                                                   'numResults' : '10',
-                                                   'queryCo' : company},
-                                       callback=self.parse_search_results_follow_next_page)
-            form_request.meta['search_company'] = company
-            form_request.meta['page_num'] = 1
-            form_requests.append(form_request)
+        formdata = {'search_text' : 'CUSIP',
+                    'sort' : 'Date',
+                    'formType' : '1',
+                    'isAdv' : 'true',
+                    'stemming' : 'true',
+                    'numResults' : '10'}
+
+        if self.search_key == 'cik':
+            ciks = self.load_ciks()
+            for cik in ciks:
+                formdata.update({'queryCik' : cik})
+                print str(formdata)
+                form_requests.append(self.build_form_request(cik, formdata))
+        else:
+            companies = self.load_companies()
+            for company in companies:
+                formdata.update({'queryCo' : company})
+                form_requests.append(self.build_form_request(company, formdata))
 
         return form_requests
+
+    def build_form_request(self, search_term, formdata):
+        form_request = FormRequest("https://searchwww.sec.gov/EDGARFSClient/jsp/EDGAR_MainAccess.jsp",
+                                   callback=self.parse_search_results_follow_next_page,
+                                   formdata=formdata)
+        form_request.meta['search_term'] = search_term
+        form_request.meta['page_num'] = 1
+        return form_request
 
     def parse_javascript_open(self, href):
         pat = re.compile("javascript:opennew\('([\w:\w/\.\-]+)'")
@@ -112,10 +129,10 @@ class EdgarSpider(BaseSpider):
     def parse_document(self, response):
         logging.debug("------ parse_document ------")
         item = response.meta['item']
-        #search_company = response.meta['search_company']
-        search_company = item['search_company']
+        #search_term = response.meta['search_term']
+        search_term = item['search_term']
 
-        logging.debug("search_company: " + search_company)
+        logging.debug("search_term: " + search_term)
 
         response = requests.get(item['url'])
         document_name = item['document_name'].strip()
@@ -138,7 +155,7 @@ class EdgarSpider(BaseSpider):
 
         logging.debug("PARSING %s with content type %s" % (document_name, content_type) )
         logging.debug ("ISSUER: %s" % issuer_name)
-        results = parser.parse(response.text, content_type=content_type, issuer_name=issuer_name, search_company=search_company)
+        results = parser.parse(response.text, content_type=content_type, issuer_name=issuer_name, search_term=search_term)
         if results:
             clean_scraped_data(results, MULTI_VALUE_DELIMITTER, MAX_FIELD_LENGTH)
             logging.debug("--- Updating with results: ")
@@ -151,14 +168,15 @@ class EdgarSpider(BaseSpider):
         yield item
 
     def parse_search_results_follow_next_page(self, response):
-        search_company = response.meta.get('search_company')
+        search_term = response.meta.get('search_term')
         page_num = response.meta.get('page_num')
 
         logging.debug("------ parse_search_results_follow_next_page -----")
         logging.debug("Page num: " + str(page_num))
-        logging.debug("Search company: " + search_company)
+        logging.debug("Search company: " + search_term)
 
-        logging.info("Parsing search results for " + search_company + ", page " + str(page_num))
+        logging.info("Parsing search results for " + search_term + ", page " + str(page_num))
+        logging.info("%d results" % len(response.xpath("//div[@id='ifrm2']/table[2]/tr")[1:]))
 
         for index, sel in enumerate(response.xpath("//div[@id='ifrm2']/table[2]/tr")[1:]):
             logging.debug("Index: " + str(index))
@@ -182,12 +200,12 @@ class EdgarSpider(BaseSpider):
             filing_item['document_name'] = document_name
             filing_item['date'] = date
             filing_item['url'] = url
-            filing_item['search_company'] = search_company
+            filing_item['search_term'] = search_term
             request = scrapy.Request(url, callback=self.parse_document)
             request.meta['item'] = filing_item
-            request.meta['search_company'] = search_company # Set this for the next page of search results
-            logging.debug("Setting search company " + search_company + " for document_name " + document_name)
-            if not request.meta['search_company']:
+            request.meta['search_term'] = search_term # Set this for the next page of search results
+            logging.debug("Setting search company " + search_term + " for document_name " + document_name)
+            if not request.meta['search_term']:
                 logging.error("No search company set in request.meta!")
 
             yield request
@@ -199,7 +217,7 @@ class EdgarSpider(BaseSpider):
             logging.debug("Following next page...")
             url = response.urljoin(next_page[0].extract())
             request = scrapy.Request(url, self.parse_search_results_follow_next_page)
-            request.meta['search_company'] = search_company # Set this for the next page of search results
+            request.meta['search_term'] = search_term # Set this for the next page of search results
             request.meta['page_num'] = page_num + 1
             yield request
 
