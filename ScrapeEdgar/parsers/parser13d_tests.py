@@ -16,3 +16,4 @@ class Parser13dTests(unittest.TestCase):
         self.assertEqual(['654106103'], results.get('cusip'))
         self.assertEqual('NIKE, Inc.', results.get('issuer_name'))
         self.assertEqual('Philip H. Knight, One Bowerman Drive, Beaverton, Oregon 97005, (503) 671-3500', results.get('address'))
+        self.assertEqual('Class B Common Stock', results.get('issue_name'))

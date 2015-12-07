@@ -30,6 +30,12 @@ class Parser13d(BaseParser):
             logging.warning("No match for address")
 
         # Issue Name
+        pat = re.compile(r'\(Name of Issuer\)([\w\W]+)\(Title of Class of Securities\)', re.IGNORECASE | re.MULTILINE)
+        match = pat.search(text)
+        if match:
+            issue_name = match.group(1).strip()
+        else:
+            logging.warning("No match for issue name")
 
         # Issuer Name
         issuer_name = None
@@ -44,4 +50,4 @@ class Parser13d(BaseParser):
             issuer_name = match.group(1).strip()
 
         print "issuer name: %s" % issuer_name
-        return {'cusip': [cusip_number], 'address': address, 'issuer_name' : issuer_name}
+        return {'cusip': [cusip_number], 'address': address, 'issuer_name' : issuer_name, 'issue_name' : issue_name}

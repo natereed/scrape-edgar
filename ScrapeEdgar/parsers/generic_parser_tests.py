@@ -72,8 +72,3 @@ class GenericParserTests(unittest.TestCase):
         contents = load_file_contents('example_filings/hd_exhibit11x09082015.html')
         results = self.parser.parse(contents)
         self.assertEqual(['FLOATING RATE NOTES DUE 2017', '3.35% NOTES DUE 2025'], results.get("issue_name"))
-
-    def test_nike_broken_13d_cusip_not_extracted(self):
-        contents = load_file_contents('example_filings/nike_13d_broken_cusip.html')
-        results = self.parser.parse(contents)
-        self.assertEqual(['654106103'], results.get('654106103'))
