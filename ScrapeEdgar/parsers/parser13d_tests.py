@@ -13,5 +13,4 @@ class Parser13dTests(unittest.TestCase):
         results = self.parser.parse(contents)
         self.assertEqual(['654106103'], results.get('cusip'))
         print results
-
-        self.assertEqual('NIKE, Inc.', results.get('parsed_issuer_name'))
+        self.assertEqual('NIKE, Inc.', results.get('issuer_name'))

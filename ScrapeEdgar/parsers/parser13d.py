@@ -36,4 +36,4 @@ class Parser13d(BaseParser):
             issuer_name = match.group(1).strip()
 
         print "issuer name: %s" % issuer_name
-        return {'cusip': [cusip_number], 'address': address, 'parsed_issuer_name' : issuer_name}
+        return {'cusip': [cusip_number], 'address': address, 'issuer_name' : issuer_name}
