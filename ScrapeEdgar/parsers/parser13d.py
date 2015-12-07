@@ -29,6 +29,8 @@ class Parser13d(BaseParser):
         else:
             logging.warning("No match for address")
 
+        # Issue Name
+
         # Issuer Name
         issuer_name = None
         pat = re.compile(r"\(Amendment\s+No\.\s+[0-9]?\)\*?\s+([\w\W]+)\(Name\s+of\s+Issuer\)", re.IGNORECASE | re.MULTILINE)

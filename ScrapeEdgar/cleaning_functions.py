@@ -33,10 +33,10 @@ def clean_scraped_data(results, delim=';', max_field_length=100000):
             val = [clean_str(str) for str in val]
         results[key] = val
 
-    if results['issue_name']:
+    if results.get('issue_name'):
         results['issue_name'] = format_list(results['issue_name'], delim)
 
-    if results['cusip']:
+    if results.get('cusip'):
         results['cusip'] = format_list(results['cusip'], delim)
 
     # Limit length
