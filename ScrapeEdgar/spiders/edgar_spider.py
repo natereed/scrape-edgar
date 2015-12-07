@@ -27,16 +27,6 @@ class EdgarSpider(BaseSpider):
         self.input_companies = kwargs.get('input_companies')
         self.search_key = search_key
 
-    def extract_filing_person(self, document_name):
-        logging.info("Extracting filing person from " + document_name)
-        pat = re.compile(r'for ([\w\W]+)$')
-        match = pat.search(document_name)
-        if match:
-            logging.info("FILING PERSON match: %s" % match.group(1))
-            return match.group(1)
-        else:
-            logging.info("No match for filing person")
-
     def load_companies(self):
         if self.input_companies:
             return self.input_companies.split(",")
@@ -139,25 +129,22 @@ class EdgarSpider(BaseSpider):
         response = requests.get(item['url'])
         document_name = item['document_name'].strip()
         logging.debug("document_name: " + document_name)
-        filing_person = self.extract_filing_person(document_name)
-        logging.debug("filing_person: " + filing_person)
-        logging.debug("--- Parse document %s for filing person %s" % (document_name, filing_person))
+        logging.debug("--- Parse document %s" % document_name)
 
         content_type = response.headers['content-type']
 
         if response.status_code != 200:
             logging.error("Unable to retrieve %s " % document_name)
-            yield item
+            yield item.to_scrapy_item()
 
         parser = self.select_parser(document_name, content_type)
 
         # Set item fields...
         if not parser:
-            yield item
+            yield item.to_scrapy_item()
 
         logging.debug("PARSING %s with content type %s" % (document_name, content_type) )
-        logging.debug("FILING PERSON: %s" % filing_person)
-        results = parser.parse(response.text, content_type=content_type, filing_person=filing_person, search_term=search_term)
+        results = parser.parse(response.text, content_type=content_type)
         if results:
             clean_scraped_data(results, MULTI_VALUE_DELIMITTER, MAX_FIELD_LENGTH)
             logging.debug("--- Updating with results: ")
@@ -167,7 +154,7 @@ class EdgarSpider(BaseSpider):
             logging.debug(item)
         else:
             logging.warning("No results from %s (%s) " % (item['url'], document_name))
-        yield item
+        yield item.to_scrapy_item()
 
     def parse_search_results_follow_next_page(self, response):
         search_term = response.meta.get('search_term')
