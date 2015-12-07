@@ -10,6 +10,7 @@ from scrapy.spider import BaseSpider
 from ScrapeEdgar.items import FilingItem
 from ScrapeEdgar.cleaning_functions import clean_scraped_data
 from ScrapeEdgar.parsers.parser13g import Parser13g
+from ScrapeEdgar.parsers.parser13d import Parser13d
 from ScrapeEdgar.parsers.parser13ga import Parser13ga
 from ScrapeEdgar.parsers.parser8kEx101 import Parser8kEx101
 from ScrapeEdgar.parsers.generic_parser import GenericParser
@@ -26,15 +27,15 @@ class EdgarSpider(BaseSpider):
         self.input_companies = kwargs.get('input_companies')
         self.search_key = search_key
 
-    def extract_issuer_name(self, document_name):
-        logging.info("Extracting issuer name from " + document_name)
+    def extract_filing_person(self, document_name):
+        logging.info("Extracting filing person from " + document_name)
         pat = re.compile(r'for ([\w\W]+)$')
         match = pat.search(document_name)
         if match:
-            logging.info("ISSUER NAME match: %s" % match.group(1))
+            logging.info("FILING PERSON match: %s" % match.group(1))
             return match.group(1)
         else:
-            logging.info("No match for issuer name")
+            logging.info("No match for filing person")
 
     def load_companies(self):
         if self.input_companies:
@@ -108,20 +109,22 @@ class EdgarSpider(BaseSpider):
         else:
             return None
 
-    def select_parser(self, document_type, content_type):
+    def select_parser(self, document_name, content_type):
         parser = None
         # TBD: Add 8k exhibits
 
-        if re.match(u'SC 13G/A', document_type):
+        if re.match(u'SC 13G/A', document_name):
             parser = Parser13ga()
         #elif re.match(u'EX-4\.2 of 8-K', document_type): # Is this even used?
         #    parser = Parser8kEx42()
-        elif re.match(u'SC 13G', document_type):
+        elif re.match(u'SC 13G', document_name):
             parser = Parser13g()
-        elif re.match(u'EX-1\.01 of 8-K',document_type):
+        elif re.match(u'EX-1\.01 of 8-K',document_name):
             parser = Parser8kEx101()
+        elif re.match(u'SC 13D', document_name):
+            parser = Parser13d()
         else:
-            logging.warn("Can't find parser for %s, %s. Using generic parser." % (document_type, content_type))
+            logging.warn("Can't find parser for %s, %s. Using generic parser." % (document_name, content_type))
             parser = GenericParser()
         return parser
 
@@ -138,7 +141,7 @@ class EdgarSpider(BaseSpider):
         logging.debug("document_name: " + document_name)
         filing_person = self.extract_filing_person(document_name)
         logging.debug("filing_person: " + filing_person)
-        logging.debug("--- Parse document %s for issuer %s" % (document_name, filing_person))
+        logging.debug("--- Parse document %s for filing person %s" % (document_name, filing_person))
 
         content_type = response.headers['content-type']
 
