@@ -6,9 +6,6 @@ from ScrapeEdgar.parsers.address_text_parser import parse_address
 
 class Parser13d(BaseParser):
     def parse_text(self, text, **kwargs):
-        print text
-
-        print "OK!!!!!"
         cusip_number = None
         address = None
 
@@ -24,16 +21,19 @@ class Parser13d(BaseParser):
 
         address = parse_address(text)
 
-        issue_name = None
-        pat = re.compile(r"\(Name\s+of\s+Issuer\)([a-z0-9\.%'\s\,\$]+)-*\s+\(Title\s+of\s+Class\s+of\s+Securities\)", re.IGNORECASE | re.MULTILINE)
+        issuer_name = None
+        pat = re.compile(r"\(Amendment\s+No\.\s+[0-9]?\)\*?\s+([\w\W]+)\(Name\s+of\s+Issuer\)", re.IGNORECASE | re.MULTILINE)
+        f = open("text.txt", "w")
+        f.write(text)
+        f.close()
+
         match = pat.search(text)
+        print "--- match"
+        print match
+
         if match:
-            issue_name = match.group(1).strip()
+            print "Match!"
+            issuer_name = match.group(1).strip()
 
-        else:
-            pat = re.compile(r'Item 2\(d\)\.\s+Title\s+of\s+Class\s+of\s+Securities:\s+([\w\W]+)\s+Item\s+2\(e\)')
-            match = pat.search(text)
-            if match:
-                issue_name = match.group(1).strip()
-
-        return {'cusip': cusip_number, 'address': address, 'issue_name' : issue_name}
+        print "issuer name: %s" % issuer_name
+        return {'cusip': [cusip_number], 'address': address, 'parsed_issuer_name' : issuer_name}

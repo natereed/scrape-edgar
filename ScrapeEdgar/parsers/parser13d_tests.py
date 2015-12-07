@@ -12,3 +12,6 @@ class Parser13dTests(unittest.TestCase):
         contents = load_file_contents('example_filings/nike_13d_broken_cusip.html')
         results = self.parser.parse(contents)
         self.assertEqual(['654106103'], results.get('cusip'))
+        print results
+
+        self.assertEqual('NIKE, Inc.', results.get('parsed_issuer_name'))
