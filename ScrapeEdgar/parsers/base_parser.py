@@ -12,8 +12,6 @@ class BaseParser:
             logging.warning("Unrecognized content type %s" % content_type)
             return None
 
-        results['issuer_name'] = kwargs.get('issuer_name')
-        results['search_term'] = kwargs.get('search_term')
         return results
 
     def parse_html(self, doc, **kwargs):

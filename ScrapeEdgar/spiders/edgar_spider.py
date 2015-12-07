@@ -136,9 +136,9 @@ class EdgarSpider(BaseSpider):
         response = requests.get(item['url'])
         document_name = item['document_name'].strip()
         logging.debug("document_name: " + document_name)
-        issuer_name = self.extract_issuer_name(document_name)
-        logging.debug("issuer_name: " + issuer_name)
-        logging.debug("--- Parse document %s for issuer %s" % (document_name, issuer_name))
+        filing_person = self.extract_filing_person(document_name)
+        logging.debug("filing_person: " + filing_person)
+        logging.debug("--- Parse document %s for issuer %s" % (document_name, filing_person))
 
         content_type = response.headers['content-type']
 
@@ -153,8 +153,8 @@ class EdgarSpider(BaseSpider):
             yield item
 
         logging.debug("PARSING %s with content type %s" % (document_name, content_type) )
-        logging.debug ("ISSUER: %s" % issuer_name)
-        results = parser.parse(response.text, content_type=content_type, issuer_name=issuer_name, search_term=search_term)
+        logging.debug("FILING PERSON: %s" % filing_person)
+        results = parser.parse(response.text, content_type=content_type, filing_person=filing_person, search_term=search_term)
         if results:
             clean_scraped_data(results, MULTI_VALUE_DELIMITTER, MAX_FIELD_LENGTH)
             logging.debug("--- Updating with results: ")
