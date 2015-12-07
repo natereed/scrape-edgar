@@ -9,4 +9,4 @@ class CleaningTests(unittest.TestCase):
         self.assertFalse(validate_cusip("NUMBER FOR")['is_valid'])
 
     def test_check_ensco_cusip_is_invalid(self):
-        self.assertFalse(validate_cusip("26874Q109"))['is_valid']
+        self.assertFalse(validate_cusip("26874Q109")['is_valid'])

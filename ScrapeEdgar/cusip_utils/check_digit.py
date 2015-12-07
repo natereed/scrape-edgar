@@ -40,7 +40,7 @@ def validate_cusip(cusip):
     if checksum != int(checksum_digit):
         return {'is_valid' : False, 'reason': 'Invalid checksum'}
 
-    logging.debug("CUSIP #%s   checksum: %d    check digit: %d" % (cusip, checksum, checksum_digit))
+    logging.debug("CUSIP #%s   checksum: %s    check digit: %s" % (cusip, checksum, checksum_digit))
     return {'is_valid' : True}
 
 

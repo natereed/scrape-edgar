@@ -12,7 +12,6 @@ from ScrapeEdgar.cleaning_functions import clean_scraped_data
 from ScrapeEdgar.parsers.parser13g import Parser13g
 from ScrapeEdgar.parsers.parser13ga import Parser13ga
 from ScrapeEdgar.parsers.parser8kEx101 import Parser8kEx101
-from ScrapeEdgar.parsers.parser8kEx402 import Parser8kEx402
 from ScrapeEdgar.parsers.generic_parser import GenericParser
 
 MULTI_VALUE_DELIMITTER = ';'
@@ -46,18 +45,18 @@ class EdgarSpider(BaseSpider):
         if re.match(r'https*', self.input_file):
             response = requests.request('GET', self.input_file)
             if response.status_code == 200:
-                reader = csv.DictReader(StringIO.StringIO(response.content))
+                reader = csv.reader(StringIO.StringIO(response.content))
                 for row in reader:
-                    companies.append(row['COMPANY'])
+                    companies.append(row[0])
                 return companies
             else:
                 logging.error("Couldn't get companies from " + self.input_file)
                 raise Exception("Unable to find companies to scrape. Aborting...")
 
         with open(self.input_file, "r") as csv_file:
-            reader = csv.DictReader(csv_file)
+            reader = csv.reader(csv_file)
             for row in reader:
-                companies.append(row['COMPANY'])
+                companies.append(row[0])
         return companies
 
     def load_ciks(self):
