@@ -42,10 +42,10 @@ class Parser13ga(BaseParser):
 
         # Issuer
         issuer_name = None
-        pat = re.compile(r"\(Amendment\s+No\.*:*\s+[\w\W]*?\)\*?\s+([\w\W]+?)-*\(Name\s+of\s+Issuer\)", re.IGNORECASE | re.MULTILINE)
+        pat = re.compile(r"\(Amendment\s+No\.*:*\s+[\w\W]*?\)\*?\s+(Under\s+the\s+Securities\s+Exchange\s+Act\s+of\s+1934)?([\w\W]+?)-*\(Name\s+of\s+Issuer\)", re.IGNORECASE | re.MULTILINE)
         match = pat.search(doc)
         if match:
-            issuer_name = match.group(1).strip()
+            issuer_name = match.group(2).strip()
             match = re.match(r'(.*?)\s*-+$', issuer_name)
             if match:
                 issuer_name = match.group(1).strip()
