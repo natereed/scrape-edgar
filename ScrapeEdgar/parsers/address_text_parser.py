@@ -8,7 +8,7 @@ def format_address(address):
 
 def parse_address(text):
     address = None
-    address_pat1 = re.compile("Principal Executive Offices*:\W*([\w|\W]*)Item 2\.*\s*\(a\)",
+    address_pat1 = re.compile("Principal Executive Offices*:\s+([\w|\W]+)?\s+Item\s+2\.*\s*\(a\)",
                                  re.IGNORECASE | re.MULTILINE)
 
     address_pat2 = re.compile("Address\s+of\s+Issuer'*\s*s\s+Principal\s+Executive\s+Offices\s+([\w|\W]*?)Item*\s+2\.*\s*\(a\)",

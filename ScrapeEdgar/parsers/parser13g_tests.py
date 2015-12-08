@@ -37,7 +37,6 @@ class Parser13gTests(unittest.TestCase):
 
     # TBD (need to find an actual text document for this):
     #def test_parse13_text(self):
-
     def test_extract_issue_name_from_13g(self):
         contents = load_file_contents("example_filings/sc13g_twitter.html")
         results = self.parser.parse(contents, content_type="text/html")
@@ -58,13 +57,19 @@ class Parser13gTests(unittest.TestCase):
         print "Not yet implemented"
 
     def test_extract_issue_name_from_ex1_8k(self):
-        #http://www.sec.gov/Archives/edgar/data/1115222/000119312515220904/d941511dex11.htm
+        #http://www.sec.gov /Archives/edgar/data/1115222/000119312515220904/d941511dex11.htm
         pass
 
     def test_issuer_name_missing_from_swoosh_13g(self):
         contents = load_file_contents("example_filings/nike_swoosh_13g.html")
         results = self.parser.parse(contents, content_type="text/html")
         self.assertEqual("NIKE, Inc.", results.get("issuer_name"))
+
+    def test_issuer_name_and_address_missing_from_nike_inc_html(self):
+        contents = load_file_contents("example_filings/nikeinc.html")
+        results = self.parser.parse(contents, content_type="text/html")
+        self.assertEqual("NIKE\nInc", results.get("issuer_name"))
+        self.assertEqual("One Bowerman Drive, Beaverton, Oregon 97005-6453", results.get("address"))
 
 if __name__ == '__main__':
     unittest.main()
