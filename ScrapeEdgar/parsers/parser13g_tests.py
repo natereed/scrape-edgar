@@ -61,6 +61,11 @@ class Parser13gTests(unittest.TestCase):
         #http://www.sec.gov/Archives/edgar/data/1115222/000119312515220904/d941511dex11.htm
         pass
 
+    def test_issuer_name_missing_from_swoosh_13g(self):
+        contents = load_file_contents("example_filings/nike_swoosh_13g.html")
+        results = self.parser.parse(contents, content_type="text/html")
+        self.assertEqual("NIKE, Inc.", results.get("issuer_name"))
+
 if __name__ == '__main__':
     unittest.main()
 
