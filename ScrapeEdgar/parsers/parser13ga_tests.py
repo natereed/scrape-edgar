@@ -64,7 +64,21 @@ class Parser13gaTests(unittest.TestCase):
     def test_extract_issue_name_from_13ga_text(self):
         contents = load_file_contents("example_filings/13ga-dun.bradstreet.corp.txt")
         results = self.parser.parse(contents, content_type="text/plain")
+        print results
         self.assertEqual("Common Stock", results.get('issue_name'))
+
+    def test_extract_issuer_name_from_13ga_text(self):
+        contents = load_file_contents("example_filings/13ga-dun.bradstreet.corp.txt")
+        results = self.parser.parse(contents, content_type="text/plain")
+        print results
+        self.assertEqual("DUN & BRADSTREET CORP", results.get("issuer_name"))
+
+    def test_extract_fields_from_nike_13ga_alt_format(self):
+        contents = load_file_contents("example_filings/nike_13ga_alt_format.html")
+        results = self.parser.parse(contents, content_type="text/html")
+        self.assertEqual("Common Stock", results.get("issue_name"))
+        self.assertEqual("NIKE\nInc", results.get("issuer_name"))
+        self.assertEqual("654106103", results.get("cusip"))
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,28 +1,61 @@
-from ScrapeEdgar.parsers.base_parser import BaseParser
-import re
 from ScrapeEdgar.parsers.address_text_parser import parse_address
+from ScrapeEdgar.parsers.base_parser import BaseParser
+
+import logging
+import re
 
 class Parser13ga(BaseParser):
     def parse_text(self, doc, **kwargs):
-        patterns_to_match_groups = {
-            r'(\w{6}\W*\w{3})\W+\(CUSIP Number\)': 1,
-            r'cusip (no|number|num)\.*:*\W*(\w{6}\W*\w{3})' : 2
-        }
+        with open("tmp.html", "w") as out_file:
+            out_file.write(doc)
 
+        # CUSIP
         cusip = None
-        for pat in patterns_to_match_groups:
+        pat = r'(\w{6}\W*\w{3})\W+\(CUSIP Number\)'
+        match = re.compile(pat, re.IGNORECASE | re.MULTILINE).search(doc)
+        if match:
+            cusip = match.group(1)
+        else:
+            pat = r'cusip (no|number|num)\.*:*\W*(\w{6}\W*\w{3})'
             match = re.compile(pat, re.IGNORECASE | re.MULTILINE).search(doc)
             if match:
-                cusip = match.group(patterns_to_match_groups.get(pat))
-                break
+                cusip = match.group(2)
+            else:
+                logging.warning("No match for cusip")
 
+        # Address
         address = parse_address(doc)
 
+        # Issue
         issue_name = None
-        pat = re.compile(r"\(Name\s+of\s+Issuer\)([a-z0-9\.%'\s\,\$]+)-*\s+\(Title\s+of\s+Class\s+of\s+Securities\)", re.IGNORECASE | re.MULTILINE)
+        pat = re.compile(r"\(Name\s+of\s+Issuer\)([\w\W]+?)-*\s+\(Title\s+of\s+Class\s+of\s+Securities\)", re.IGNORECASE | re.MULTILINE)
         match = pat.search(doc)
         if match:
             issue_name = match.group(1).strip()
+        else:
+            pat = re.compile(r'Title\s+of\s+Class\s+of\s+Securities:\s+([\w\W]+)\s+CUSIP\s+Number:', re.IGNORECASE | re.MULTILINE)
+            match = pat.search(doc)
+            if match:
+                issue_name = match.group(1).strip()
+            else:
+                logging.warning("No match for issue name")
 
-        return {'cusip' : cusip, 'address' : address, 'issue_name' : issue_name}
+        # Issuer
+        issuer_name = None
+        pat = re.compile(r"\(Amendment\s+No\.*:*\s+[0-9]*?\)\s+([\w\W]+?)-*\(Name of Issuer\)", re.IGNORECASE | re.MULTILINE)
+        match = pat.search(doc)
+        if match:
+            issuer_name = match.group(1).strip()
+            match = re.match(r'(.*?)\s*-+$', issuer_name)
+            if match:
+                issuer_name = match.group(1).strip()
+        else:
+            pat = re.compile(r'Item\s+1\(a\) - Name\s+of\s+Issuer:([\w\W]+?)Item', re.IGNORECASE | re.MULTILINE)
+            match = pat.search(doc)
+            if match:
+                issuer_name = match.group(1).strip()
+            else:
+                logging.warning("No match for issuer name in SC13G/A")
+
+        return {'cusip' : cusip, 'address' : address, 'issue_name' : issue_name, 'issuer_name' : issuer_name}
 
