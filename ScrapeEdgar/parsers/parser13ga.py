@@ -33,7 +33,7 @@ class Parser13ga(BaseParser):
         if match:
             issue_name = match.group(1).strip()
         else:
-            pat = re.compile(r'Title\s+of\s+Class\s+of\s+Securities:\s+([\w\W]+)\s+CUSIP\s+Number:', re.IGNORECASE | re.MULTILINE)
+            pat = re.compile(r'Title\s+of\s+Class\s+of\s+Securities:\s+([\w\W]+?)\s+(Item 2\(e\)\.*)?\s+CUSIP\s+Number:', re.IGNORECASE | re.MULTILINE)
             match = pat.search(doc)
             if match:
                 issue_name = match.group(1).strip()
@@ -42,7 +42,7 @@ class Parser13ga(BaseParser):
 
         # Issuer
         issuer_name = None
-        pat = re.compile(r"\(Amendment\s+No\.*:*\s+[0-9]*?\)\s+([\w\W]+?)-*\(Name of Issuer\)", re.IGNORECASE | re.MULTILINE)
+        pat = re.compile(r"\(Amendment\s+No\.*:*\s+[\w\W]*?\)\*?\s+([\w\W]+?)-*\(Name\s+of\s+Issuer\)", re.IGNORECASE | re.MULTILINE)
         match = pat.search(doc)
         if match:
             issuer_name = match.group(1).strip()
@@ -50,7 +50,7 @@ class Parser13ga(BaseParser):
             if match:
                 issuer_name = match.group(1).strip()
         else:
-            pat = re.compile(r'Item\s+1\(a\) - Name\s+of\s+Issuer:([\w\W]+?)Item', re.IGNORECASE | re.MULTILINE)
+            pat = re.compile(r'Item\s+1\(a\)\.*\s*-*\s*Name\s+of\s+Issuer:([\w\W]+?)Item', re.IGNORECASE | re.MULTILINE)
             match = pat.search(doc)
             if match:
                 issuer_name = match.group(1).strip()
