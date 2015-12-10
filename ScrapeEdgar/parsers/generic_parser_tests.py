@@ -54,12 +54,6 @@ class GenericParserTests(unittest.TestCase):
         self.assertEqual(['1.625% NOTES DUE 2018', '3.625% NOTES DUE 2023', '4.875% NOTES DUE 2043'], results.get('issue_name'))
         self.assertEqual(['594918 AV6', '594918 AW4', '594918 AX2'], results.get('cusip'))
 
-    def test_missing_cusips_from_fwp(self):
-        contents = load_file_contents("example_filings/noble_energy_fwp.html")
-        results = self.parser.parse(contents)
-        self.assertEqual(['5.250% NOTES DUE 2043'], results.get('issue_name'))
-        self.assertEqual(['655044AG0'], results.get('cusip'))
-
     def test_rejects_long_issue_names(self):
         contents = load_file_contents("example_filings/aflac_ex_4.1.html")
         results = self.parser.parse(contents)
