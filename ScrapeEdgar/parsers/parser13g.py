@@ -39,6 +39,24 @@ class Parser13g(BaseParser):
 
         return issue_name
 
+    def extract_issuer_name(self, text):
+        # Extract Issuer
+        # Check which pattern to use. This may seem redundant, but it's an optimization to avoid searching for a
+        # non-match to capture groups, which in some cases, may take significant running time (~20 secs observed in one
+        # case).
+        issuer_name = None
+        if re.search(Parser13g.NAME_OF_ISSUER_FIELD_PAT, text, re.IGNORECASE | re.MULTILINE):
+            pat = re.compile(Parser13g.ISSUER_NAME_PATTERN1, re.IGNORECASE | re.MULTILINE)
+            match = pat.search(text)
+            if match:
+                issuer_name = match.group(4).strip()
+        else:
+            pat = re.compile(r'Item\s+1\(a\)\.*\s*-*\s*Name\s+of\s+Issuer:([\w\W]+?)Item', re.IGNORECASE | re.MULTILINE)
+            match = pat.search(text)
+            if match:
+                issuer_name = match.group(1).strip()
+        return issuer_name
+
     def parse_text(self, text, **kwargs):
         cusip_number = None
         address = None
@@ -58,24 +76,11 @@ class Parser13g(BaseParser):
 
         address = parse_address(text)
 
-        # Extract Issuer
+        # Issue name
         issue_name = self.extract_issue_name(text)
 
-        # Check which pattern to use. This may seem redundant, but it's an optimization to avoid searching for a
-        # non-match to capture groups, which in some cases, may take significant running time (~20 secs observed in one
-        # case).
-        issuer_name = None
-        if re.search(Parser13g.NAME_OF_ISSUER_FIELD_PAT, text, re.IGNORECASE | re.MULTILINE):
-            pat = re.compile(Parser13g.ISSUER_NAME_PATTERN1, re.IGNORECASE | re.MULTILINE)
-            match = pat.search(text)
-            if match:
-                issuer_name = match.group(4).strip()
-        else:
-            pat = re.compile(r'Item\s+1\(a\)\.*\s*-*\s*Name\s+of\s+Issuer:([\w\W]+?)Item', re.IGNORECASE | re.MULTILINE)
-            match = pat.search(text)
-            if match:
-                issuer_name = match.group(1).strip()
-
+        # Issuer name
+        issuer_name = self.extract_issuer_name(text)
 
         if not issuer_name:
             logging.warning("No match for issuer name in SC13G/A")
