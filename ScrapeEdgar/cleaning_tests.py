@@ -15,3 +15,10 @@ class CleaningTests(unittest.TestCase):
         results = {'cusip': None, 'issue_name': u'Common Stock,\npar value $0.01 per share', 'issuer_name': 'TRW Automotive Holdings Corp.', 'address': u'12001 Tech Center Drive, Livonia, Michigan 48150'}
 
         clean_scraped_data(results)
+
+    def test_a_list_of_none_values_is_ok(self):
+        results = {'cusip': [None], 'issue_name': [None], 'address' : [None]}
+        clean_scraped_data(results)
+        print results
+        self.assertFalse(results.get('cusip'))
+        self.assertFalse(results.get('issue_name'))

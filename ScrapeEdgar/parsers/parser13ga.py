@@ -6,9 +6,6 @@ import re
 
 class Parser13ga(BaseParser):
     def parse_text(self, doc, **kwargs):
-        with open("tmp.html", "w") as out_file:
-            out_file.write(doc)
-
         # CUSIP
         cusip = None
         pat = r'(\w{6}\W*\w{3})\W+\(CUSIP Number\)'

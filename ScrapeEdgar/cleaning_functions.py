@@ -10,6 +10,9 @@ __author__ = 'reedn'
 # Scraper functions:
 
 def clean_str(str):
+    if not str:
+        return None
+
     str = str.replace("\n", " ")
     str = re.sub(r'\s+', ' ', str)
     return str
@@ -17,6 +20,9 @@ def clean_str(str):
 def format_list(list, delim=','):
     if isinstance(list, types.StringTypes):
         return list
+
+    if None in list:
+        list.remove(None)
 
     return ("%s " % delim).join(list)
 
