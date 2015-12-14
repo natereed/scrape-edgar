@@ -10,7 +10,7 @@ class Parser13g(BaseParser):
     AMENDMENT_NO_FIELD_PAT = r'\(Amendment\s+No\.*:*\s+[\w\W]*?\)\*?'
     RULE_13D_FIELD_PAT = r'(\(RULE\s+13d-102\))?'
     SEC_ACT_PAT = r'(Under\s+the\s+Securities\s+Exchange\s+Act\s+of\s+1934\s+)?'
-    DASHED_LINE_PAT = r'-*'
+    DASHED_LINE_PAT = r'[-_]*'
     ISSUER_NAME_CAPTURE_GROUP = r'([\w\W]+?)'
     NAME_OF_ISSUER_FIELD_PAT = r'\(Name\s+of\s+Issuer\)'
     ISSUER_NAME_PATTERN1 = AMENDMENT_NO_FIELD_PAT \
@@ -46,11 +46,15 @@ class Parser13g(BaseParser):
         # non-match to capture groups, which in some cases, may take significant running time (~20 secs observed in one
         # case).
         issuer_name = None
+        print "NAME OF ISSUER FIELD pattern: " + Parser13g.NAME_OF_ISSUER_FIELD_PAT
+        print "ISSUER pattern: " + Parser13g.ISSUER_NAME_PATTERN1
+
         if re.search(Parser13g.NAME_OF_ISSUER_FIELD_PAT, text, re.IGNORECASE | re.MULTILINE):
             pat = re.compile(Parser13g.ISSUER_NAME_PATTERN1, re.IGNORECASE | re.MULTILINE)
             match = pat.search(text)
             if match:
                 issuer_name = match.group(4).strip()
+                return issuer_name
         else:
             pat = re.compile(r'Item\s+1\(a\)\.*\s*-*\s*Name\s+of\s+Issuer:([\w\W]+?)Item', re.IGNORECASE | re.MULTILINE)
             match = pat.search(text)
@@ -59,9 +63,6 @@ class Parser13g(BaseParser):
         return issuer_name
 
     def extract_cusip(self, text):
-        with open("tmp.txt", "w") as out_file:
-            out_file.write(text)
-
         CUSIP_PAT = "\w{4,6}(\s*|-*)\w{2,3}-*\w{0,1}"
 
         cusip_number = None

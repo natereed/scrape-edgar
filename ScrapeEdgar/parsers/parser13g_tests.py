@@ -78,6 +78,7 @@ class Parser13gTests(unittest.TestCase):
         self.assertEqual("Common shares", results.get("issue_name"))
         self.assertEqual("04269E107", results.get("cusip"))
 
+    #@unittest.skip("skipping")
     def test_apd_missing_cusip(self):
         contents = load_file_contents("example_filings/airproducts_13g.txt")
         results = self.parser.parse(contents, content_type="text/plain")
@@ -86,10 +87,16 @@ class Parser13gTests(unittest.TestCase):
         self.assertEqual("COMMON SHARES", results.get("issue_name"))
         self.assertEqual("009158106", results.get("cusip"))
 
+    #@unittest.skip("skipping")
     def test_extract_issuer_name_with_dashed_line_separator(self):
         contents = load_file_contents("example_filings/whole.foods.market.inc.txt")
         results = self.parser.parse(contents, content_type="text/plain")
         self.assertEqual("WHOLE FOODS MARKET INC.", results.get("issuer_name"))
+
+    def test_extract_issuer_name_with_underscore_separator(self):
+        contents = load_file_contents("example_filings/altera.html")
+        results = self.parser.parse(contents, content_type="text/html")
+        self.assertEqual("Altera Corporation", results.get("issuer_name"))
 
 if __name__ == '__main__':
     unittest.main()
