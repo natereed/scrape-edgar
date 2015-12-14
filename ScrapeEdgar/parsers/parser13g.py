@@ -19,12 +19,13 @@ class Parser13g(BaseParser):
                            + r'\s*' + SEC_ACT_PAT \
                            + DASHED_LINE_PAT \
                            + r'\s*' + ISSUER_NAME_CAPTURE_GROUP \
+                           + r'\s*' + DASHED_LINE_PAT \
                            + r'\s+' + NAME_OF_ISSUER_FIELD_PAT
 
     def extract_issue_name(self, text):
         # Extract ISSUE NAME
         issue_name = None
-        pat = re.compile(r"\(Name\s+of\s+Issuer\)([a-z0-9\.%'\s\,\$]+)-*\s+\(Title\s+of\s+Class\s+of\s+Securities\)",
+        pat = re.compile(r"\(Name\s+of\s+Issuer\)([\w\W]+?)(-*|_*)\s+\(Title\s+of\s+Class\s+of\s+Securities\)",
                          re.IGNORECASE | re.MULTILINE)
         match = pat.search(text)
         if match:
@@ -57,22 +58,42 @@ class Parser13g(BaseParser):
                 issuer_name = match.group(1).strip()
         return issuer_name
 
-    def parse_text(self, text, **kwargs):
+    def extract_cusip(self, text):
+        with open("tmp.txt", "w") as out_file:
+            out_file.write(text)
+
+        CUSIP_PAT = "\w{4,6}(\s*|-*)\w{2,3}-*\w{0,1}"
+
         cusip_number = None
         address = None
-
         # Extract CUSIP
-        pat = re.compile(r'cusip (no|number|num|#)\.*:*\W*(\w{6}\W*\w{3})\b', re.IGNORECASE | re.MULTILINE)
+        pat = re.compile(r'cusip (no|number|num|#)\.*:*\s+(' + CUSIP_PAT + ')\b', re.IGNORECASE | re.MULTILINE)
         match = pat.search(text)
         if match:
             cusip_number = match.group(2).strip()
-        else:
-            pat = re.compile(r'cusip\s+number\s+(\w{6}\W*\w{3})\b', re.IGNORECASE | re.MULTILINE)
-            match = pat.search(text)
-            if match:
-                cusip_number = match.group(1).strip()
-            else:
-                logging.warning("No match for cusip #")
+            return cusip_number
+
+        pat = re.compile(r'cusip\s+number\s+(' + CUSIP_PAT + ')\b', re.IGNORECASE | re.MULTILINE)
+        match = pat.search(text)
+        if match:
+            cusip_number = match.group(1).strip()
+            return cusip_number
+
+        pat = r'\(Title\s+of\s+Class\s+of\s+Securities\)\s+(' + CUSIP_PAT + ')\s+_*\s*\(cusip(/sedol)?\s+(no|number|num|#)\)'
+        print "--- CUSIP PATTERN ---"
+        print pat
+        pat = re.compile(pat, re.IGNORECASE | re.MULTILINE)
+
+        match = pat.search(text)
+        if match:
+            cusip_number = match.group(1).strip()
+            return cusip_number
+
+        logging.warning("No match for cusip #")
+        return cusip_number
+
+    def parse_text(self, text, **kwargs):
+        cusip_number = self.extract_cusip(text)
 
         address = parse_address(text)
 

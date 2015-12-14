@@ -57,9 +57,6 @@ class Parser13d(BaseParser):
         return issuer_name
 
     def parse_text(self, text, **kwargs):
-        with open("tmp.html", "w") as file_out:
-            file_out.write(text)
-
         cusip_number = None
         address = None
 
@@ -67,11 +64,8 @@ class Parser13d(BaseParser):
         pat = re.compile(r'\(Title\s+of\s+Class\s+of\s+Securities\)\s+([\w\W]+)\s+\(cusip\s+(no|number|num|#)\)', re.IGNORECASE | re.MULTILINE)
         match = pat.search(text)
         if match:
-            print "MATCHES!!!!"
             cusip_number = match.group(1).strip()
-            print cusip_number
         else:
-            print "NO MATCH!"
             logging.warning("No match for cusip #")
 
         # Address
