@@ -22,6 +22,11 @@ class Parser13g(BaseParser):
                            + r'\s*' + DASHED_LINE_PAT \
                            + r'\s+' + NAME_OF_ISSUER_FIELD_PAT
 
+    CUSIP_PAT = r'\w{4,6}(\s*|-*)\w{2,3}-*\w{0,1}'
+    CUSIP_PAT1 = r'cusip (no|number|num|#)\.*:*\s+(' + CUSIP_PAT + r')\b'
+    CUSIP_PAT2 = r'cusip\s+number\s+(' + CUSIP_PAT + r')\b'
+    CUSIP_PAT3 = r'\(Title\s+of\s+Class\s+of\s+Securities\)\s+(' + CUSIP_PAT + r')\s+_*\s*\(cusip(/sedol)?\s+(no|number|num|#)\)'
+
     def extract_issue_name(self, text):
         # Extract ISSUE NAME
         issue_name = None
@@ -63,30 +68,40 @@ class Parser13g(BaseParser):
         return issuer_name
 
     def extract_cusip(self, text):
-        CUSIP_PAT = "\w{4,6}(\s*|-*)\w{2,3}-*\w{0,1}"
+        #with open("tmp.html", "w") as out_file:
+        #    out_file.write(text)
+
+        #print text
 
         cusip_number = None
         address = None
         # Extract CUSIP
-        pat = re.compile(r'cusip (no|number|num|#)\.*:*\s+(' + CUSIP_PAT + ')\b', re.IGNORECASE | re.MULTILINE)
+        print "CUSIP PATTERN #1: " + Parser13g.CUSIP_PAT1
+        print "CUSIP PATTERN #1:" + r'cusip (no|number|num|#)\.*:*\s+(\w{4,6}(\s*|-*)\w{2,3}-*\w{0,1})'
+        pat = re.compile(Parser13g.CUSIP_PAT1, re.IGNORECASE | re.MULTILINE)
         match = pat.search(text)
         if match:
+            print "MATCHED Pattern #1!!!"
             cusip_number = match.group(2).strip()
             return cusip_number
+        else:
+            print "NO MATCH FOR PATTERN #1"
 
-        pat = re.compile(r'cusip\s+number\s+(' + CUSIP_PAT + ')\b', re.IGNORECASE | re.MULTILINE)
+        pat = re.compile(Parser13g.CUSIP_PAT2, re.IGNORECASE | re.MULTILINE)
         match = pat.search(text)
         if match:
+            print "Matched Pattern #2"
             cusip_number = match.group(1).strip()
             return cusip_number
 
-        pat = r'\(Title\s+of\s+Class\s+of\s+Securities\)\s+(' + CUSIP_PAT + ')\s+_*\s*\(cusip(/sedol)?\s+(no|number|num|#)\)'
-        print "--- CUSIP PATTERN ---"
+        pat = Parser13g.CUSIP_PAT3
+        print "--- CUSIP PATTERN #3 ---"
         print pat
         pat = re.compile(pat, re.IGNORECASE | re.MULTILINE)
 
         match = pat.search(text)
         if match:
+            print "Matched Pattern #3"
             cusip_number = match.group(1).strip()
             return cusip_number
 

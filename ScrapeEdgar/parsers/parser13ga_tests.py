@@ -106,5 +106,10 @@ class Parser13gaTests(unittest.TestCase):
         self.assertEqual("NIKE\nInc", results.get("issuer_name"))
         self.assertEqual("654106103", results.get("cusip"))
 
+    def test_cusip_number_missing_from_wal_mart(self):
+        contents = load_file_contents("example_filings/walmart13ga.html")
+        results = self.parser.parse(contents, content_type="text/html")
+        self.assertEqual("931142-10-3", results.get("cusip"))
+
 if __name__ == '__main__':
     unittest.main()

@@ -8,7 +8,8 @@ class Parser13ga(BaseParser):
     def parse_text(self, doc, **kwargs):
         # CUSIP
         cusip = None
-        pat = r'(\w{6}\W*\w{3})\W+\(CUSIP Number\)'
+        cusip_pattern = r'\w{4,6}(\s*|-*)\w{2,3}-*\w{0,1}'
+        pat = r'(' + cusip_pattern + r')\W+\(CUSIP Number\)'
         match = re.compile(pat, re.IGNORECASE | re.MULTILINE).search(doc)
         if match:
             cusip = match.group(1)
