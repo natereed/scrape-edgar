@@ -1,0 +1,454 @@
+<DOCUMENT>
+<TYPE>SC 13G
+<SEQUENCE>1
+<FILENAME>airproducts2014.txt
+<DESCRIPTION>13G FILING
+<TEXT>
+ Schedule 13G                                      Page _____ of _____ Pages
+                                                          1       11
+
+
+
+
+
+
+
+                                   UNITED STATES
+                         SECURITIES AND EXCHANGE COMMISSION
+                               Washington, D.C. 20549
+
+
+                                    SCHEDULE 13G
+
+                      Under the Securities Exchange Act of 1934
+                                 (Amendment No. ___)*
+                                                 24
+
+
+
+
+
+
+
+                           AIR PRODUCTS & CHEMICALS, INC.
+                 ___________________________________________________
+                                  (Name of Issuer)
+
+
+                                    COMMON SHARES
+                 ___________________________________________________
+                           (Title of Class of Securities)
+
+
+                                      009158106
+                 ___________________________________________________
+                                   (Cusip Number)
+                                     12/31/2013
+                 ___________________________________________________
+               (Date of Event Which Requires Filing of this Statement)
+
+
+
+ Check the appropriate box to designate the rule pursuant to which this
+ Schedule is filed:
+
+ [X] Rule 13d-1(b)
+ [ ] Rule 13d-1(c)
+ [ ] Rule 13d-1(d)
+
+ *The remainder of this cover page shall be filled out for a reporting
+ person's initial filing on this form with respect to the subject class
+ of securities, and for any subsequent amendment containing information
+ which would alter the disclosures provided in a prior cover page.
+
+ The information required in the remainder of this cover page shall not
+ be deemed to be "filed" for the purpose of Section 18 of the Securities
+ Exchange Act of 1934 ("Act") or otherwise subject to the liabilities
+ of that section of the Act but shall be subject to all other provisions
+ of the Act (however, see the Notes).
+ Schedule 13G                                      Page _____ of _____ Pages
+                                                          2       11
+
+CUSIP No. ___009158106           ___
+___________________________________________________
+ 1.  Name of Reporting Person and I.R.S. Identification No.:
+     State Farm Mutual Automobile Insurance Company 37-0533100
+___________________________________________________
+ 2.  Check the appropriate box if a Member of a Group
+     (a) _____
+     (b) __X__
+___________________________________________________
+ 3.  SEC USE ONLY:
+___________________________________________________
+ 4.  Citizenship or Place of Organization: Illinois
+___________________________________________________
+ Number of    5.  Sole Voting Power: 7,018,600
+ Shares       ___________________________________________________
+ Beneficially 6.  Shared Voting Power: 53,000
+ Owned by     ___________________________________________________
+ Each         7.  Sole Dispositive Power: 7,018,600
+ Reporting    ___________________________________________________
+ Person With  8.  Shared Dispositive Power: 53,000
+___________________________________________________
+ 9.  Aggregate Amount Beneficially Owned by each Reporting Person: 7,071,600
+___________________________________________________
+10.  Check Box if the Aggregate Amount in Row 9 excludes Certain Shares: ____
+___________________________________________________
+11.  Percent of Class Represented by Amount in Row 9: 3.34  %
+___________________________________________________
+12.  Type of Reporting Person: IC
+
+ Schedule 13G                                      Page _____ of _____ Pages
+                                                          3       11
+
+CUSIP No. ___009158106           ___
+___________________________________________________
+ 1.  Name of Reporting Person and I.R.S. Identification No.:
+     State Farm Life Insurance Company 37-0533090
+___________________________________________________
+ 2.  Check the appropriate box if a Member of a Group
+     (a) _____
+     (b) __X__
+___________________________________________________
+ 3.  SEC USE ONLY:
+___________________________________________________
+ 4.  Citizenship or Place of Organization: Illinois
+___________________________________________________
+ Number of    5.  Sole Voting Power: 236,500
+ Shares       ___________________________________________________
+ Beneficially 6.  Shared Voting Power: 11,983
+ Owned by     ___________________________________________________
+ Each         7.  Sole Dispositive Power: 236,500
+ Reporting    ___________________________________________________
+ Person With  8.  Shared Dispositive Power: 11,983
+___________________________________________________
+ 9.  Aggregate Amount Beneficially Owned by each Reporting Person: 248,483
+___________________________________________________
+10.  Check Box if the Aggregate Amount in Row 9 excludes Certain Shares: ____
+___________________________________________________
+11.  Percent of Class Represented by Amount in Row 9: 0.12  %
+___________________________________________________
+12.  Type of Reporting Person: IC
+
+ Schedule 13G                                      Page _____ of _____ Pages
+                                                          4       11
+
+CUSIP No. ___009158106           ___
+___________________________________________________
+ 1.  Name of Reporting Person and I.R.S. Identification No.:
+     State Farm Fire and Casualty Company 37-0533080
+___________________________________________________
+ 2.  Check the appropriate box if a Member of a Group
+     (a) _____
+     (b) __X__
+___________________________________________________
+ 3.  SEC USE ONLY:
+___________________________________________________
+ 4.  Citizenship or Place of Organization: Illinois
+___________________________________________________
+ Number of    5.  Sole Voting Power: 1,701,200
+ Shares       ___________________________________________________
+ Beneficially 6.  Shared Voting Power: 6,935
+ Owned by     ___________________________________________________
+ Each         7.  Sole Dispositive Power: 1,701,200
+ Reporting    ___________________________________________________
+ Person With  8.  Shared Dispositive Power: 6,935
+___________________________________________________
+ 9.  Aggregate Amount Beneficially Owned by each Reporting Person: 1,708,135
+___________________________________________________
+10.  Check Box if the Aggregate Amount in Row 9 excludes Certain Shares: ____
+___________________________________________________
+11.  Percent of Class Represented by Amount in Row 9: 0.81  %
+___________________________________________________
+12.  Type of Reporting Person: IC
+
+ Schedule 13G                                      Page _____ of _____ Pages
+                                                          5       11
+
+CUSIP No. ___009158106           ___
+___________________________________________________
+ 1.  Name of Reporting Person and I.R.S. Identification No.:
+     State Farm Investment Management Corp.
+___________________________________________________
+ 2.  Check the appropriate box if a Member of a Group
+     (a) _____
+     (b) __X__
+___________________________________________________
+ 3.  SEC USE ONLY:
+___________________________________________________
+ 4.  Citizenship or Place of Organization: Delaware
+___________________________________________________
+ Number of    5.  Sole Voting Power: 1,060,000
+ Shares       ___________________________________________________
+ Beneficially 6.  Shared Voting Power: 18,388
+ Owned by     ___________________________________________________
+ Each         7.  Sole Dispositive Power: 1,060,000
+ Reporting    ___________________________________________________
+ Person With  8.  Shared Dispositive Power: 18,388
+___________________________________________________
+ 9.  Aggregate Amount Beneficially Owned by each Reporting Person: 1,078,388
+___________________________________________________
+10.  Check Box if the Aggregate Amount in Row 9 excludes Certain Shares: ____
+___________________________________________________
+11.  Percent of Class Represented by Amount in Row 9: 0.50  %
+___________________________________________________
+12.  Type of Reporting Person: IA
+
+ Schedule 13G                                      Page _____ of _____ Pages
+                                                          6       11
+
+CUSIP No. ___009158106           ___
+___________________________________________________
+ 1.  Name of Reporting Person and I.R.S. Identification No.:
+     State Farm Insurance Companies Employee Retirement Trust 36-6042145
+___________________________________________________
+ 2.  Check the appropriate box if a Member of a Group
+     (a) _____
+     (b) __X__
+___________________________________________________
+ 3.  SEC USE ONLY:
+___________________________________________________
+ 4.  Citizenship or Place of Organization: Illinois
+___________________________________________________
+ Number of    5.  Sole Voting Power: 4,000,000
+ Shares       ___________________________________________________
+ Beneficially 6.  Shared Voting Power: 7,229
+ Owned by     ___________________________________________________
+ Each         7.  Sole Dispositive Power: 4,000,000
+ Reporting    ___________________________________________________
+ Person With  8.  Shared Dispositive Power: 7,229
+___________________________________________________
+ 9.  Aggregate Amount Beneficially Owned by each Reporting Person: 4,007,229
+___________________________________________________
+10.  Check Box if the Aggregate Amount in Row 9 excludes Certain Shares: ____
+___________________________________________________
+11.  Percent of Class Represented by Amount in Row 9: 1.89  %
+___________________________________________________
+12.  Type of Reporting Person: EP
+
+ Schedule 13G                                      Page _____ of _____ Pages
+                                                          7       11
+
+CUSIP No. ___009158106           ___
+___________________________________________________
+ 1.  Name of Reporting Person and I.R.S. Identification No.:
+     State Farm Insurance Companies Savings and Thrift Plan for U.S.
+         Employees  37-6091823
+
+___________________________________________________
+ 2.  Check the appropriate box if a Member of a Group
+     (a) _____
+     (b) __X__
+___________________________________________________
+ 3.  SEC USE ONLY:
+___________________________________________________
+ 4.  Citizenship or Place of Organization: Illinois
+___________________________________________________
+ Number of    5.  Sole Voting Power: 1,376,800
+ Shares       ___________________________________________________
+ Beneficially 6.  Shared Voting Power: 0
+ Owned by     ___________________________________________________
+ Each         7.  Sole Dispositive Power: 1,376,800
+ Reporting    ___________________________________________________
+ Person With  8.  Shared Dispositive Power: 0
+___________________________________________________
+ 9.  Aggregate Amount Beneficially Owned by each Reporting Person: 1,376,800
+___________________________________________________
+10.  Check Box if the Aggregate Amount in Row 9 excludes Certain Shares: ____
+___________________________________________________
+11.  Percent of Class Represented by Amount in Row 9: 0.65  %
+___________________________________________________
+12.  Type of Reporting Person: EP
+
+ Schedule 13G                                      Page _____ of _____ Pages
+                                                          8       11
+
+
+
+Item 1(a) and (b).  Name and Address of Issuer & Principal Executive Offices:
+                    _________________________________________________________
+                   AIR PRODUCTS & CHEMICALS, INC.
+                   7201 HAMILTON BLVD.
+                   ALLENTOWN, PA  18195-1501
+
+Item 2(a).  Name of Person Filing: State Farm Mutual Automobile Insurance
+            _____________________
+                                   Company and related entities;  See Item 8
+                                   and Exhibit A
+
+Item 2(b).  Address of Principal Business Office: One State Farm Plaza
+            ____________________________________
+                                                  Bloomington, IL 61710
+
+Item 2(c).  Citizenship: United States
+            ___________
+
+Item 2(d) and (e).  Title of Class of Securities and Cusip Number: See above.
+                    _____________________________________________
+
+Item 3.  This Schedule is being filed, in accordance with 240.13d-1(b).
+         _____________________________________________________________
+         See Exhibit A attached.
+
+Item 4(a).  Amount Beneficially Owned: 15,490,635 shares
+            _________________________
+
+Item 4(b).  Percent of Class: 7.31 percent pursuant to Rule 13d-3(d)(1).
+            ________________
+
+Item 4(c).  Number of shares as to which such person has:
+            ____________________________________________
+           (i) Sole Power to vote or to direct the vote: 15,393,100
+           (ii) Shared power to vote or to direct the vote: 97,535
+           (iii) Sole Power to dispose or to direct disposition of: 15,393,100
+           (iv) Shared Power to dispose or to direct disposition of: 97,535
+
+Item 5.  Ownership of Five Percent or less of a Class: Not Applicable.
+         ____________________________________________
+
+Item 6.  Ownership of More than Five Percent on Behalf of Another Person: N/A
+         _______________________________________________________________
+
+Item 7.  Identification and Classification of the Subsidiary Which Acquired
+         __________________________________________________________________
+         the Security being Reported on by the Parent Holding Company: N/A
+         ______________________________________________________________
+
+Item 8.  Identification and Classification of Members of the Group:
+         _________________________________________________________
+         See Exhibit A attached.
+
+Item 9.  Notice of Dissolution of Group:  N/A
+         ______________________________
+ Schedule 13G                                      Page _____ of _____ Pages
+                                                          9       11
+
+
+
+  Item 10.  Certification.  By signing below I certify that, to the best of
+  my knowledge and belief, the securities referred to above were
+  acquired in the ordinary course of business and were not acquired
+  for the purpose of and do not have the effect of changing or
+  influencing the control of the issuer of such securities and were
+  not acquired in connection with or as a participant in any
+  transaction having such purpose or effect.
+
+                                      Signature
+  After reasonable inquiry and to the best of my knowledge and belief,
+  I certify that the information set forth in this statement is true,
+  complete and correct.
+
+
+
+              02/07/2014                   STATE FARM MUTUAL AUTOMOBILE
+  _________________________________
+                 Date                        INSURANCE COMPANY
+
+                                           STATE FARM LIFE INSURANCE COMPANY
+
+                                           STATE FARM FIRE AND CASUALTY
+                                             COMPANY
+
+  STATE FARM INSURANCE COMPANIES           STATE FARM INVESTMENT MANAGEMENT
+    EMPLOYEE RETIREMENT TRUST                CORP.
+
+  STATE FARM INSURANCE COMPANIES           STATE FARM ASSOCIATES FUNDS
+    SAVINGS AND THRIFT PLAN FOR              TRUST - STATE FARM GROWTH FUND
+    U.S. EMPLOYEES
+                                           STATE FARM ASSOCIATES FUNDS
+                                             TRUST - STATE FARM BALANCED
+                                             FUND
+
+                                           STATE FARM MUTUAL FUND TRUST
+
+
+
+
+
+
+         /s/ Paul N. Eckley
+  _________________________________               /s/ Paul N. Eckley
+                                           _________________________________
+     Paul N. Eckley, Fiduciary of            Paul N. Eckley, Vice President
+          each of the above                       of each of the above
+ Schedule 13G                                      Page _____ of _____ Pages
+                                                         10       11
+
+                            EXHIBIT A
+
+
+This Exhibit lists the entities affiliated with State Farm Mutual
+Automobile Insurance Company ("Auto Company") which might be deemed to
+constitute a "group" with regard to the ownership of shares reported
+herein.
+
+Auto Company, an Illinois-domiciled insurance company, is the parent
+company of multiple wholly owned insurance company subsidiaries,
+including State Farm Life Insurance Company, and State Farm Fire and
+Casualty Company.  Auto Company is also the parent company of State
+Farm Investment Management Corp. ("SFIMC"), which is a registered
+transfer agent under the Securities Exchange Act of 1934 and a
+registered investment advisor under the Investment Advisers Act of
+1940.  SFIMC serves as transfer agent and investment adviser to State
+Farm Associates' Funds Trust, State Farm Variable Product Trust, and
+State Farm Mutual Fund Trust, three Delaware Business Trusts that are
+registered investment companies under the Investment Company Act of
+1940.  Auto Company also sponsors two qualified retirement plans for
+the benefit of its employees, which plans are named the State Farm
+Insurance Companies Employee Retirement Trust and the State Farm
+Insurance Companies Savings and Thrift Plan for U.S. Employees
+(collectively the "Qualified Plans").
+
+As part of its corporate structure, Auto Company has established an
+Investment Department.  The Investment Department is directly or
+indirectly responsible for managing or overseeing the management of
+the investment and reinvestment of assets owned by each person that
+has joined in filing this Schedule 13G.  Moreover, the Investment
+Department is responsible for voting proxies or overseeing the voting
+of proxies related to issuers the shares of which are held by one or
+more entities that have joined in filing this report.  Each insurance
+company included in this report and SFIMC have established an
+Investment Committee that oversees the activities of the Investment
+Department in managing the firm's assets.  The Trustees of the
+Qualified Plans perform a similar role in overseeing the investment of
+each plan's assets.
+
+Pursuant to Rule 13d-4 each person listed in the table below
+expressly disclaims "beneficial ownership" as to all shares as to
+which such person has no right to receive the proceeds of sale of the
+security and disclaims that it is part of a "group".
+
+
+ Schedule 13G                                      Page _____ of _____ Pages
+                                                         11       11
+
+
+                                                               Number of
+                                                              Shares based
+                                             Classification   on Proceeds
+Name                                          Under Item 3      of Sale
+____                                         ______________   ____________
+
+State Farm Mutual Automobile Insurance Company   IC         7,071,600 shares
+State Farm Life Insurance Company                IC           248,483 shares
+State Farm Fire and Casualty Company             IC         1,708,135 shares
+State Farm Investment Management Corp.           IA            18,388 shares
+State Farm Associates Funds Trust - State
+    Farm Growth Fund                             IV           830,000 shares
+State Farm Associates Funds Trust - State
+    Farm Balanced Fund                           IV           230,000 shares
+State Farm International Life Insurance
+    Company Ltd.                                 IV                 0 shares
+State Farm Insurance Companies Employee
+    Retirement Trust                             EP         4,007,229 shares
+State Farm Insurance Companies Savings and
+    Thrift Plan for U.S. Employees               EP
+  Equities Account                                          1,120,800 shares
+  Balanced Account                                            256,000 shares
+State Farm Mutual Fund Trust                     IV                 0 shares
+                                                    -----------------
+                                                           15,490,635 shares
+
+
+</TEXT>
+</DOCUMENT>

@@ -1,0 +1,273 @@
+<DOCUMENT>
+<TYPE>SC 13G
+<SEQUENCE>1
+<FILENAME>arqule12311413g.txt
+<TEXT>
+<PAGE>
+
+
+UNITED STATES SECURITIES AND
+EXCHANGE COMMISSION
+Washington, D.C.  20549
+
+
+Schedule 13G
+
+
+Under the Securities Exchange Act of 1934
+(Amendment No. )
+(RULE 13d-102)
+
+
+Information to be included in statements filed
+pursuant to Rule 13d-1 (b) (c) and (d) and Amendments thereto
+filed pursuant to Rule 13d-2 (b).
+
+
+ArQule, Inc.
+(Name of Issuer)
+
+
+Common shares
+(Title of Class of Securities)
+
+04269E107
+(CUSIP/SEDOL Number)
+
+
+December 31, 2014
+(Date of Event which Requires Filing of this Statement)
+
+
+Check the appropriate box to designate the rule pursuant
+to which this Schedule is filed:
+
+[X] 	Rule 13d-1 (b)
+[ ]	Rule 13d-1 (c)
+[ ]	Rule 13d-1 (d)
+
+	*The remainder of this cover page shall be filled out for a
+reporting person's initial filing on this form with respect to the
+subject class of securities, and for any subsequent amendment
+containing information which would alter the disclosures provided
+in a prior cover page.
+
+	The information required in the remainder of this cover page shall
+not be deemed to be "filed" for the purpose of Section 18 of the Securities
+Exchange Act of 1934 ("Act") or otherwise subject to the liabilities of
+that section of the Act but shall be subject to all other provisions of
+the Act (however, see the Notes).
+
+
+<PAGE>
+
+SCHEDULE 13G
+
+
+Issuer: ArQule, Inc.	CUSIP No.: 04269E107
+
+1	NAMES OF REPORTING PERSONS I.R.S.
+	IDENTIFICATION NOS. OF ABOVE PERSONS
+
+	First Eagle Investment Management, LLC
+	Tax ID # 57-1156902
+
+
+2	CHECK THE APPROPRIATE BOX IF A MEMBER
+	OF A GROUP
+	(a)
+	(b)
+
+
+3	SEC USE ONLY
+
+
+4	CITIZENSHIP OR PLACE OF ORGANIZATION
+
+	State of Delaware
+
+
+NUMBER OF SHARES	5  SOLE VOTING POWER - 4,444,899
+BENEFICIALLY  		6  SHARED VOTING POWER -  0
+OWNED BY EACH	 	7  SOLE DISPOSITIVE POWER - 4,444,899
+REPORTING PERSON       	8  SHARED DISPOSITIVE POWER - 0
+WITH:
+
+
+9	AGGREGATE AMOUNT BENEFICIALLY OWNED
+	BY EACH REPORTING PERSON
+
+	4,444,899
+
+
+10	CHECK IF THE AGGREGATE AMOUNT IN
+	ROW (11) EXCLUDES CERTAIN SHARES
+
+	N/A
+
+
+11	PERCENT OF CLASS REPRESENTED BY AMOUNT
+   	IN ROW 9:
+
+ 	7.08%
+
+
+12	TYPE OF REPORTING PERSON
+
+	IA
+
+
+
+<PAGE>
+
+SCHEDULE 13G
+
+Issuer: ArQule, Inc.	CUSIP No.: 04269E107
+
+
+ITEM 1
+
+(a)	Name of Issuer: ArQule, Inc.
+
+
+(b)	Address of Issuer's Principal Executive Offices:
+
+	19 Presidential Way
+	Woburn, Massachusetts 01801
+
+
+ITEM 2
+
+(a)	Name of Person Filing: First Eagle Investment Management, LLC
+
+(b)	Address of Principal Business Office:
+
+	1345 Avenue of the Americas
+	New York, NY 10105
+
+
+(c)	Citizenship: Delaware, USA
+
+
+(d)	Title of Class of Securities:
+
+	Common Stock
+
+
+
+(e)	CUSIP No.: 04269E107
+
+
+ITEM 3
+
+If this statement is filed pursuant to Sections 240.
+13d-1(b), or 240.13d-2(b) or (c), check whether
+the person filing is a:
+
+(a)	[  ]	Broker or dealer registered under
+		Section 15 of the Act (15 U.S.C. 78o);
+
+(b)	[  ]	Bank as defined in section 3(a)(6) of the Act (15 U.S.C. 78c);
+
+(c) 	[  ]	Insurance Company as defined in section
+		3(a)(19) of the Act (15 U.S.C. 78C);
+
+(d)	[  ]	Investment company registered under Section
+		8 of the Investment Company Act if 1940
+		(15 U.S.C. 80a-8);
+
+(e)	[X]	An investment adviser in accordance with Section
+		240.13d-1(b)(1)(ii)(E);
+
+(f)	[  ]	An employee benefit plan or endowment fund in accordance with
+		Section 240.13d-1(b)(1)(ii)(F);
+
+(g)	[  ]	A parent holding company or control person in accordance with
+		Section 240.13d-1(b)(1)(ii)(G);
+
+(h)	[  ]	A savings associations as defined in Section 3(b) of the
+		Federal Deposit Insurance Act (12 U.S.C. 1813);
+
+(i)	[  ]	A church plan that is excluded from the
+		definition of an insurance company under Section 3 (c)(14) of
+		the Investment Company Act of 1940 (15 U.S.C. 80a-3);
+
+(j)	[  ]	Group, in accordance with section 240.13d-1 (b)(1)(ii)(J).
+
+
+
+<PAGE>
+
+SCHEDULE 13G
+
+Issuer: ArQule, Inc.	CUSIP No.: 04269E107
+
+ITEM 4.	Ownership.
+
+
+
+
+ITEM 5. Ownership of Five Percent or Less of a Class.
+
+	N/A
+
+
+ITEM 6. OWNERSHIP OF MORE THAN FIVE PERCENT ON BEHALF OF ANOTHER PERSON
+
+	First Eagle Investment Management, LLC (FEIM), an investment adviser
+	registered under Section 203 of the Investment Advisers Act of 1940,
+	is deemed to be the beneficial owner of 2,944,518 shares, or 7.08%
+	of the ordinary shares believed to be outstanding as a result of
+	acting as investment adviser to various clients. Clients of FEIM
+	have the right to receive and the ultimate power to direct the
+	receipt of dividends from, or the proceeds of the sale of, such
+	securities.
+
+
+ITEM 7. IDENTIFICATION AND CLASSIFICATION OF THE SUBSIDIARY WHICH ACQUIRED THE
+	SECURITY BEING REPORTED ON BY THE PARENT HOLDING COMPANY OR CONTROL
+	PERSON.
+
+	N/A
+
+
+ITEM 8. Identification and Classification of Members of the Group.
+
+	N/A
+
+
+ITEM 9. Notice of Dissolution of Group
+
+	N/A
+
+
+ITEM 10. Certification
+
+	By signing below I certify that, to the best of my knowledge and
+	belief, the securities referred to above were acquired and held in the
+	ordinary course of business and were not acquired and are not held for the
+	purpose of or with the effect of changing or influencing the control of the
+	issuer of such securities and were not acquired and are not held in
+	connection with or as a participant in any transaction having that purpose
+	of effect.
+
+SIGNATURE
+
+After reasonable inquiry and to the best of my knowledge and belief,
+I certify that the information set forth in this statement is true,
+complete and correct.
+
+Date:		January 27, 2015
+
+Signature:	/s/ Mark Goldstein
+
+Name/Title:	Mark Goldstein, Senior Vice President
+
+
+</PAGE>
+
+
+
+
+</TEXT>
+</DOCUMENT>
