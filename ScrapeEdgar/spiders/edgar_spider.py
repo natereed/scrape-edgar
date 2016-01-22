@@ -51,16 +51,40 @@ class EdgarSpider(BaseSpider):
         return companies
 
     def load_ciks(self):
+        logging.debug("Opening " + self.input_file)
         ciks = []
+
+        if re.match(r'https*', self.input_file):
+            logging.debug("Retrieving file from url")
+            try:
+                response = requests.request('GET', self.input_file)
+                logging.debug("Got it!")
+            except:
+                logging.error("Unable to retrieve file from " + self.input_file)
+
+            logging.debug("Reading file...")
+            if response and response.status_code == 200:
+                reader = csv.DictReader(StringIO.StringIO(response.content))
+                for row in reader:
+                    logging.debug(row)
+                    ciks.append(row['CIK'])
+                return ciks
+            else:
+                logging.error("Couldn't get companies from " + self.input_file)
+                raise Exception("Unable to find companies to scrape. Aborting...")
+
         with open(self.input_file, "r") as csv_file:
             reader = csv.DictReader(csv_file)
             for row in reader:
                 ciks.append(row['CIK'])
+
+        logging.debug("Loaded %d CIK's" % len(ciks))
         return ciks
 
 # CIK:          https://searchwww.sec.gov/EDGARFSClient/jsp/EDGAR_MainAccess.jsp?search_text=CUSIP&sort=Date&formType=1&isAdv=true&stemming=true&numResults=10&queryCik=1115222&numResults=10
 # Company name: https://searchwww.sec.gov/EDGARFSClient/jsp/EDGAR_MainAccess.jsp?search_text=CUSIP&sort=Date&formType=1&isAdv=true&stemming=true&numResults=10&queryCo=Dun%20and%20Bradstreet&numResults=10
     def start_requests(self):
+        logging.debug("STARTING requests")
         form_requests = []
         formdata = {'search_text' : 'CUSIP',
                     'sort' : 'Date',
@@ -70,12 +94,15 @@ class EdgarSpider(BaseSpider):
                     'numResults' : '10'}
 
         if self.search_key == 'cik':
+            logging.debug("Searching by CIK's")
             ciks = self.load_ciks()
             for cik in ciks:
+                logging.debug("CIK: " + cik)
                 formdata.update({'queryCik' : cik})
                 print str(formdata)
                 form_requests.append(self.build_form_request(cik, formdata))
         else:
+            logging.debug("Searching by company names")
             companies = self.load_companies()
             for company in companies:
                 formdata.update({'queryCo' : company})
