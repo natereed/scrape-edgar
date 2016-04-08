@@ -45,7 +45,7 @@ class EdgarSpider(BaseSpider):
                 logging.error("Couldn't get companies from " + self.input_file)
                 raise Exception("Unable to find companies to scrape. Aborting...")
 
-        with open(os.path.join("inputdata", self.input_file), "r") as csv_file:
+        with open(self.input_file, "r") as csv_file:
             reader = csv.reader(csv_file)
             for row in reader:
                 companies.append(row[0])
@@ -150,17 +150,19 @@ class EdgarSpider(BaseSpider):
     def parse_document(self, response):
         logging.debug("------ parse_document ------")
         item = response.meta['item']
+        #search_term = response.meta['search_term']
         search_term = item['search_term']
 
         logging.debug("search_term: " + search_term)
 
+        response = requests.get(item['url'])
         document_name = item['document_name'].strip()
         logging.debug("document_name: " + document_name)
         logging.debug("--- Parse document %s" % document_name)
 
         content_type = response.headers['content-type']
 
-        if response.status != 200:
+        if response.status_code != 200:
             logging.error("Unable to retrieve %s " % document_name)
             yield item.to_scrapy_item()
 
@@ -171,7 +173,7 @@ class EdgarSpider(BaseSpider):
             yield item.to_scrapy_item()
 
         logging.debug("PARSING %s with content type %s" % (document_name, content_type) )
-        results = parser.parse(response.body, content_type=content_type)
+        results = parser.parse(response.text, content_type=content_type)
         if results:
             clean_scraped_data(results, MULTI_VALUE_DELIMITTER, MAX_FIELD_LENGTH)
             logging.debug("--- Updating with results: ")

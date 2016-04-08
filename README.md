@@ -11,7 +11,8 @@ It's also a good idea to install the scrapyd and scrapyd-client packages to mana
 
 Usage:
 
-  scrapy crawl edgar -a -t csv --logfile scrapy.log
+  scrapy crawl edgar -a input_file=inputdata/companies.csv
+  scrapy crawl edgar -a input_file=inputdata/russell_2000_cik_to_ticker.csv -a search_key=cik
 
 ## Automated tests
 
