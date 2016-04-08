@@ -1,6 +1,7 @@
 import logging
 import csv
 import re
+import os
 import StringIO
 
 import requests
@@ -44,7 +45,7 @@ class EdgarSpider(BaseSpider):
                 logging.error("Couldn't get companies from " + self.input_file)
                 raise Exception("Unable to find companies to scrape. Aborting...")
 
-        with open(self.input_file, "r") as csv_file:
+        with open(os.path.join("inputdata", self.input_file), "r") as csv_file:
             reader = csv.reader(csv_file)
             for row in reader:
                 companies.append(row[0])
@@ -81,8 +82,9 @@ class EdgarSpider(BaseSpider):
         logging.debug("Loaded %d CIK's" % len(ciks))
         return ciks
 
-# CIK:          https://searchwww.sec.gov/EDGARFSClient/jsp/EDGAR_MainAccess.jsp?search_text=CUSIP&sort=Date&formType=1&isAdv=true&stemming=true&numResults=10&queryCik=1115222&numResults=10
-# Company name: https://searchwww.sec.gov/EDGARFSClient/jsp/EDGAR_MainAccess.jsp?search_text=CUSIP&sort=Date&formType=1&isAdv=true&stemming=true&numResults=10&queryCo=Dun%20and%20Bradstreet&numResults=10
+    # The url's for scraping by CIK or company name, respectively:
+    # CIK:          https://searchwww.sec.gov/EDGARFSClient/jsp/EDGAR_MainAccess.jsp?search_text=CUSIP&sort=Date&formType=1&isAdv=true&stemming=true&numResults=10&queryCik=1115222&numResults=10
+    # Company name: https://searchwww.sec.gov/EDGARFSClient/jsp/EDGAR_MainAccess.jsp?search_text=CUSIP&sort=Date&formType=1&isAdv=true&stemming=true&numResults=10&queryCo=Dun%20and%20Bradstreet&numResults=10
     def start_requests(self):
         logging.debug("STARTING requests")
         form_requests = []
