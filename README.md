@@ -1,16 +1,27 @@
+## Install
+
+Complete instructions for installing Scrapy can be found in the official docs: http://doc.scrapy.org/en/latest/intro/install.html.
+
+Scrapy is installed as a Python package using pip:
+pip install scrapy
+
+It's also a good idea to install the scrapyd and scrapyd-client packages to manage long-running jobs.
+
 ## Basic usage
 
 Usage:
 
   scrapy crawl edgar -a -t csv --logfile scrapy.log
 
-The output will be written to the bucket specified by SCRAPY_FEED_URI as items.json.
-
 ## Automated tests
 
 To run the full suite of tests:
 
   ./test.sh
+
+Remember to update this script if new modules are added!
+
+The unit tests are implemented with the Python unittest framework.
 
 ## Scrapyd
 
@@ -21,7 +32,7 @@ Start the server with 'scrapyd', or as a service with 'sudo service scrapyd star
 
 To deploy to Scrapyd:
 
-  scrapyd-deploy localhost -p ScrapeEdgar
+  scrapyd-deploy localhost -p ScrapeEdgar (for the localhost target)
 
 This creates a spider called "edgar". Now that it's deployed, we can schedule a job:
 
